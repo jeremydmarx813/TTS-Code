@@ -1,0 +1,76 @@
+html,
+body {
+	height: 100%;
+}
+
+body {
+	background-color: rgb(255, 255, 255);
+}
+
+#content,
+#bottom-half,
+#round-results,
+#player1-score,
+#player2-score {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#content {
+	font-family: 'Martel', serif;
+}
+
+#heading {
+	width: 100%;
+	border-bottom: .2rem solid black;
+	background-image: url('./images/download.jpeg');
+	background-size: cover;
+	background-position: center;
+	padding: 0;
+}
+
+#heading h1 {
+	font-size: 3rem;
+	text-align: center;
+}
+
+#bottom-half {
+	width: 100%;
+}
+
+#round-results {
+	font-size: 1rem;
+	font-weight: 300;
+}
+
+#play-button {
+	height: 2.5rem;
+	font-size: 1.3rem;
+	border-radius: 20px;
+	padding: 8px;
+	cursor: pointer;
+	font-weight: 500;
+	outline: none;
+}
+
+#play-button:active {
+	background-color: rgb(74, 187, 253);
+}
+
+#score-row {
+	display: flex;
+	justify-content: center;
+}
+
+#player1-score,
+#player2-score {
+	margin-left: 35%;
+	margin-right: 35%;
+	margin-top: auto;
+	font-size: 1.1rem;
+}
+
+.player-score-container {
+	width: 6rem;
+}

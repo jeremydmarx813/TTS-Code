@@ -1,0 +1,87 @@
+html,
+body {
+	height: 100%;
+	width: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+nav,
+footer {
+	display: flex;
+	justify-content: space-between;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.nav-list {
+	display: flex;
+	list-style-type: none;
+	padding-left: .9rem;
+	align-items: center;
+}
+
+.nav-list li {
+	margin-right: 1rem;
+	cursor: pointer;
+}
+
+.nav-list li:hover {
+	color: purple;
+	text-decoration: underline;
+}
+
+#squares-pic {
+	height: 1rem;
+}
+
+#profile-pic {
+	border: 1rem;
+	height: 2rem;
+	border-radius: 0rem;
+}
+
+#doodle-container {
+	text-align: center;
+	margin-top: -10%;
+	margin-bottom: 4%;
+}
+
+#doodle-image {
+	width: 65%;
+}
+
+#search-bar {
+	width: 30rem;
+	height: 2.4rem;
+	border-radius: 2rem;
+	margin-bottom: 2rem;
+}
+
+#google-prompts-div {
+	display: flex;
+}
+
+#google-prompts-div button {
+	background-color: #8080802e;
+	margin: auto 5%;
+	width: 8rem;
+	height: 1.9rem;
+	cursor: pointer;
+}
+
+footer {
+	background-color: #8080802e;
+	margin-bottom: 0rem;
+	margin-right: 0rem;
+	margin-left: 0;
+	padding-left: 0;
+}

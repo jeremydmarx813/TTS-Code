@@ -1,0 +1,35 @@
+html,
+body {
+	height: 100%;
+	background-image: url('./stickers-coffee-beans-background-or-texture-closeup-coffee-concept.jpg.jpg');
+	font-family: 'Oswald', sans-serif;
+	font-size: 1.1rem;
+}
+
+body,
+header,
+main section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+header,
+main {
+	width: 100%;
+}
+
+span {
+	color: rgb(119, 226, 98);
+}
+
+#cupAdder {
+	width: 4rem;
+	height: 2rem;
+}
+
+#cupAdder:active {
+	background-color: green;
+	outline: none;
+}
