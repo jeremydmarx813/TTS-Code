@@ -10,6 +10,7 @@ var gMail = {
 		mailboxes  : {
 			inbox   : [
 				{
+					sendTo       : 'jeremydmarx@gmail.com',
 					sender       : 'no-reply@alertsp.chase.com',
 					subject      : 'We got your Chase QuickDeposit(SM)',
 					message      : 'Your check was received and is currently being reviewed.',
@@ -17,6 +18,7 @@ var gMail = {
 					categories   : [ 'updates' ]
 				},
 				{
+					sendTo       : 'jeremydmarx@gmail.com',
 					sender       : 'sgallagher@techtalentsouth.com',
 					subject      : 'Resume & LinkedIn Review Webinar',
 					message      :
@@ -25,32 +27,39 @@ var gMail = {
 					categories   : [ 'promotional' ]
 				}
 			],
-			snoozed : [ {} ],
+			snoozed : [],
 			sent    : [
 				{
 					sendTo       : 'ebd7905b045336b698542364bb65fac2@reply.craigslist.org',
+					sender       : 'jeremydmarx@gmail.com',
 					subject      : '2003 BMW 525i',
 					message      :
 						'Hey Kirk, I have another buyer on the line who I told could have a day to think on it. If he turns it down, I’ll let you know. Jeremy',
-					attatchments : []
+					attatchments : [],
+					categories   : []
 				},
 				{
 					sendTo       : 'laura@gmail.com',
+					sender       : 'jeremydmarx@gmail.com',
 					subject      : 'tranche album cover',
 					message      : 'Hey, here is my new draft of the graphic',
-					attatchments : [ 'angel.png' ]
+					attatchments : [ 'angel.png' ],
+					categories   : []
 				}
 			],
 			drafts  : [
 				{
 					sendTo       : 'mikep@nocca.com',
+					sender       : 'jeremydmarx@gmail.com',
 					subject      : 'lesson schedule',
 					message      : 'Hey man, let me know what the schedule this week is',
-					attatchments : []
+					attatchments : [],
+					categories   : []
 				}
 			],
 			spam    : [
 				{
+					sendTo       : 'jeremydmarx@gmail.com',
 					sender       : 'rick@getrich.com',
 					subject      : 'You won a lot of money!',
 					message      : 'Call us for your account number',
@@ -66,12 +75,24 @@ var gMail = {
 
 //!!PROMPT 1
 Object.keys(gMail.user1.mailboxes).forEach(function(e, i) {
-    inboxNames.innerHTML += '<span>' + e + '</span><br>';
+	inboxNames.innerHTML += '<span>' + e + '</span><br>';
 });
 
 //!!PROMPT 2
-var randomNum = Math.floor(Math.random() * gMail.user1.mailboxes.inbox.length);
-Object.keys(gMail.user1.mailboxes.inbox[randomNum]).forEach(function(e, i) {
-	console.log(e);
-	emailList.innerHTML += '<p>' + e + ': ' + gMail.user1.mailboxes.inbox[randomNum][e] + '</p>';
-});
+
+for (k in gMail.user1.mailboxes) {
+	if (gMail.user1.mailboxes[k].length && k !== 'folders') {
+		var stringToAdd = '<p><span class=prompt2header>' + k + ':</span><br>';
+		var localBoxName = gMail.user1.mailboxes[k];
+		localBoxName.forEach(function(e, i) {
+			// console.log(e);
+			stringToAdd +=
+				'sendTo: ' + e.sendTo + '<br>sender: ' + e.sender + '<br>message' + e.message + '<br><br>';
+		});
+		emailList.innerHTML += stringToAdd + '</p>';
+	} else {
+		console.log('NO MESSAGES');
+	}
+}
+
+//!!PROMPT 3
