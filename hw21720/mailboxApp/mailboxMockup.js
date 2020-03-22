@@ -80,14 +80,26 @@ Object.keys(gMail.user1.mailboxes).forEach(function(e, i) {
 
 //!!PROMPT 2
 
+var deepArrChecker =  function(arr) {
+	var layered = false;
+	for (k in arr[0]) {
+		if (Array.isArray(arr[0][k])) {
+			layered = true;
+		}
+	}
+	return layered;
+}
+
+var messageObjGetter = function(obj) {
+	
+}
+
 for (k in gMail.user1.mailboxes) {
 	if (gMail.user1.mailboxes[k].length && k !== 'folders') {
 		var stringToAdd = '<p><span class=prompt2header>' + k + ':</span><br>';
 		var localBoxName = gMail.user1.mailboxes[k];
 		localBoxName.forEach(function(e, i) {
-			// console.log(e);
-			stringToAdd +=
-				'sendTo: ' + e.sendTo + '<br>sender: ' + e.sender + '<br>message' + e.message + '<br><br>';
+			stringToAdd += 'sendTo: ' + e.sendTo + '<br>sender: ' + e.sender + '<br>message: ' + e.message + '<br><br>';
 		});
 		emailList.innerHTML += stringToAdd + '</p>';
 	} else {
