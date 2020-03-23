@@ -1,5 +1,6 @@
 var inboxNames = document.getElementById('prompt1');
 var emailList = document.getElementById('prompt2');
+var secondMessage = document.getElementById('prompt3');
 
 var gMail = {
 	user1 : {
@@ -80,7 +81,7 @@ Object.keys(gMail.user1.mailboxes).forEach(function(e, i) {
 
 //!!PROMPT 2
 
-var deepArrChecker =  function(arr) {
+var deepArrChecker = function(arr) {
 	var layered = false;
 	for (k in arr[0]) {
 		if (Array.isArray(arr[0][k])) {
@@ -88,11 +89,9 @@ var deepArrChecker =  function(arr) {
 		}
 	}
 	return layered;
-}
+};
 
-var messageObjGetter = function(obj) {
-	
-}
+var messageObjGetter = function(obj) {};
 
 for (k in gMail.user1.mailboxes) {
 	if (gMail.user1.mailboxes[k].length && k !== 'folders') {
@@ -108,3 +107,16 @@ for (k in gMail.user1.mailboxes) {
 }
 
 //!!PROMPT 3
+var messageArr = [];
+var messageCounter = 1;
+for (k in gMail.user1.mailboxes) {
+	if (gMail.user1.mailboxes[k].length && k !== 'folders') {
+		for (var i = 0; i < gMail.user1.mailboxes[k].length; i++) {
+			messageArr.push(gMail.user1.mailboxes[k][i]);
+		}
+	}
+}
+
+secondMessage.innerHTML = '<p>' + messageArr[1].message + '</p>';
+
+//!!PROMPT 4
