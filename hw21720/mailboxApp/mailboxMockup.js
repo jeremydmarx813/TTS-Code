@@ -1,6 +1,8 @@
 var inboxNames = document.getElementById('prompt1');
 var emailList = document.getElementById('prompt2');
 var secondMessage = document.getElementById('prompt3');
+var emailMarkedSent = document.getElementById('prompt4');
+var draftAdded = document.getElementById('prompt5');
 
 var gMail = {
 	user1 : {
@@ -70,7 +72,7 @@ var gMail = {
 			],
 			folders : [ { WebDev: [] }, { MusicBiz: [] } ]
 		},
-		categories : [ 'social', 'updates', 'forums', 'promotions' ]
+		categories : [ 'social', 'updates', 'forums', 'promotions', 'sent' ]
 	}
 };
 
@@ -120,3 +122,36 @@ for (k in gMail.user1.mailboxes) {
 secondMessage.innerHTML = '<p>' + messageArr[1].message + '</p>';
 
 //!!PROMPT 4
+
+var sentTrue = false;
+var testSent = gMail.user1.mailboxes.drafts[0].categories;
+testSent.push('sent');
+if (testSent.includes('sent')) {
+	sentTrue = true;
+}
+// console.log(gMail.user1.mailboxes.sent.length);
+var moveDraft = function() {
+	var draftToMove = gMail.user1.mailboxes.drafts[0];
+	gMail.user1.mailboxes.sent.push(draftToMove);
+	gMail.user1.mailboxes.drafts.shift();
+};
+moveDraft();
+// console.log(gMail.user1.mailboxes.sent.length);
+emailMarkedSent.innerHTML = '<p>Email Marked Sent?: ' + sentTrue + '</p>';
+
+//!!PROMPT 5
+// console.log(gMail.user1.mailboxes.drafts);
+var draftGenerator = function(sendTo, sender, subject, message) {
+	var draftToPush = {
+		sendTo: sendTo,
+		sender: sender,
+		subject: subject,
+		message: message,
+		attatchments: [],
+		categories: []
+	}
+	gMail.user1.mailboxes.drafts.push(draftToPush);
+};
+draftGenerator('jerry@nec.com', 'jeremydmarx@gmail.com', 'lesson', 'Can we please go over all the material from three years of college?');
+// console.log(gMail.user1.mailboxes.drafts);
+draftAdded.innerHTML = '<p>sendTo: ' + gMail.user1.mailboxes.drafts[0].sendTo + '<br>sender: ' + gMail.user1.mailboxes.drafts[0].sender + '<br>message: ' + gMail.user1.mailboxes.drafts[0].message + '</p>';
