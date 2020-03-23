@@ -143,15 +143,27 @@ emailMarkedSent.innerHTML = '<p>Email Marked Sent?: ' + sentTrue + '</p>';
 // console.log(gMail.user1.mailboxes.drafts);
 var draftGenerator = function(sendTo, sender, subject, message) {
 	var draftToPush = {
-		sendTo: sendTo,
-		sender: sender,
-		subject: subject,
-		message: message,
-		attatchments: [],
-		categories: []
-	}
+		sendTo       : sendTo,
+		sender       : sender,
+		subject      : subject,
+		message      : message,
+		attatchments : [],
+		categories   : []
+	};
 	gMail.user1.mailboxes.drafts.push(draftToPush);
 };
-draftGenerator('jerry@nec.com', 'jeremydmarx@gmail.com', 'lesson', 'Can we please go over all the material from three years of college?');
+draftGenerator(
+	'jerry@nec.com',
+	'jeremydmarx@gmail.com',
+	'lesson',
+	'Can we please go over all the material from three years of college?'
+);
 // console.log(gMail.user1.mailboxes.drafts);
-draftAdded.innerHTML = '<p>sendTo: ' + gMail.user1.mailboxes.drafts[0].sendTo + '<br>sender: ' + gMail.user1.mailboxes.drafts[0].sender + '<br>message: ' + gMail.user1.mailboxes.drafts[0].message + '</p>';
+draftAdded.innerHTML =
+	'<p>sendTo: ' +
+	gMail.user1.mailboxes.drafts[0].sendTo +
+	'<br>sender: ' +
+	gMail.user1.mailboxes.drafts[0].sender +
+	'<br>message: ' +
+	gMail.user1.mailboxes.drafts[0].message +
+	'</p>';
