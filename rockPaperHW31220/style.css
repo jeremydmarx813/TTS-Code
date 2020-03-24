@@ -10,8 +10,7 @@ body {
 #content,
 #bottom-half,
 #round-results,
-#player1-score,
-#player2-score {
+.player-score-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
