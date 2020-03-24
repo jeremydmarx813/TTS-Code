@@ -63,8 +63,8 @@ body {
 	justify-content: center;
 }
 
-#player1-score,
-#player2-score {
+#playerA-score,
+#playerB-score {
 	margin-left: 35%;
 	margin-right: 35%;
 	margin-top: auto;
@@ -73,4 +73,10 @@ body {
 
 .player-score-container {
 	width: 6rem;
+}
+
+.player-score-name {
+	height: 40px;
+	width: 90px;
+	margin-top: 2rem;
 }
