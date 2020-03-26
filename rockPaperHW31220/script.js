@@ -4,29 +4,34 @@ var playerThrows = document.getElementById('round-results').children[0];
 var winnerText = document.getElementById('round-results').children[1];
 var playButton = document.getElementById('play-button');
 var winner;
+var allUnderFive = true;
 
 var hands = [ 'rock', 'paper', 'scissors' ];
 
 var player1 = {
-	name        : 'Player 1',
-	wins        : 0,
-	currentToss : null
+	name       : 'Player 1',
+	wins       : 0,
+	assignToss
+	// currentToss : null
 };
 var player2 = {
-	name        : 'Player 2',
-	wins        : 0,
-	currentToss : null
+	name       : 'Player 2',
+	wins       : 0,
+	assignToss
+	// currentToss : null
 };
 
 var player3 = {
-	name        : 'Player 3',
-	wins        : 0,
-	currentToss : null
+	name       : 'Player 3',
+	wins       : 0,
+	assignToss
+	// currentToss : null
 };
 var player4 = {
-	name        : 'Player 4',
-	wins        : 0,
-	currentToss : null
+	name       : 'Player 4',
+	wins       : 0,
+	assignToss
+	// currentToss : null
 };
 
 var scoreBoard = {
@@ -36,72 +41,79 @@ var scoreBoard = {
 	// playerFourWins  : player4.wins
 };
 
-var currentPlayerA = document.getElementById('playerAMenu').value;
-var currentPlayerB = document.getElementById('playerBMenu').value;
+var htmlPlayerA = document.getElementById('playerAMenu').value;
+var htmlPlayerB = document.getElementById('playerBMenu').value;
 
 console.group('%cstart new round!', 'font-size: 14px; color: red;');
-currentPlayerChecker();
+// currentPlayerChecker();
+console.count('Round Number');
 
 function currentPlayerChecker() {
-	console.log('Player A is: ', currentPlayerA);
-	console.log('Player B is: ', currentPlayerB);
+	console.log('Player A is: ', htmlPlayerA);
+	console.log('Player B is: ', htmlPlayerB);
 }
 
-function assignToss(playerA, playerB) {
-	console.count('Round Number');
-	console.log(typeof playerA);
+function assignToss() {
+	// console.log(typeof playerA);
 	function generateToss() {
 		return parseInt(Math.random() * 10) % 3;
 	}
 	// var objNum = [ 'rock', 'paper', 'scissors' ];
-	playerA.currentToss = hands[generateToss()];
-	console.log(playerA);
-	playerB.currentToss = hands[generateToss()];
-	console.log(playerB);
-	console.log('Player1 throws a ' + playerA.currentToss + ', Player2 throws a ' + playerB.currentToss);
-	playerThrows.innerHTML = 'Player1 throws a ' + playerA.currentToss + ', Player2 throws a ' + playerB.currentToss;
-	return;
+	// playerA.currentToss = hands[generateToss()];
+	// console.log(playerA);
+	// playerB.currentToss = hands[generateToss()];
+	// console.log(playerB);
+	// console.log('Player1 throws a ' + playerA.currentToss + ', Player2 throws a ' + playerB.currentToss);
+	// playerThrows.innerHTML = 'Player1 throws a ' + playerA.currentToss + ', Player2 throws a ' + playerB.currentToss;
+	playerThrows.innerHTML = 'placeholder from assign toss func';
+	return hands[generateToss()];
 }
 
 function throwDown(playerA, playerB) {
-	// var winner;
-	if (playerA.currentToss === playerB.currentToss) {
+	var playerAHand = playerA.assignToss();
+	// console.log(playerA.name  +' hand func var: ', playerAHand);
+	var playerBHand = playerB.assignToss();
+	// console.log(playerB.name + ' hand func var: ', playerBHand);
+	playerThrows.innerHTML =
+		playerA.name + 'throws a ' + playerAHand + ', ' + playerB.name + ' throws a ' + playerBHand;
+	console.log(playerA.name + ' throws a ' + playerAHand + ', ' + playerB.name + ' throws a ' + playerBHand);
+	if (playerAHand === playerBHand) {
 		winnerText.innerHTML = 'Tie, throw down again!';
 		console.log('Tie, throw down again!');
-	} else if (playerA.currentToss === 'rock') {
-		if (playerB.currentToss === 'paper') {
-			winner = 'Player 2';
-			winnerText.innerHTML = 'Player 2 wins';
-			console.log('Player 2 wins!');
+	} else if (playerAHand === 'rock') {
+		if (playerBHand === 'paper') {
+			// winner = 'Player 2';
+			winnerText.innerHTML = playerB.name + 'wins';
+			console.log(playerB.name + ' wins!');
 			playerB.wins++;
 		} else {
-			winner = 'Player 1';
-			winnerText.innerHTML = 'Player 1 wins';
-			console.log('Player 1 wins!');
+			// winner = 'Player 1';
+			winnerText.innerHTML = playerA.name + ' wins';
+			console.log(playerA.name + ' wins!');
 			playerA.wins++;
 		}
-	} else if (playerA.currentToss === 'paper') {
-		if (playerB.currentToss === 'scissors') {
-			winner = 'Player 2';
-			winnerText.innerHTML = 'Player 2 wins';
-			console.log('Player 2 wins!');
+	} else if (playerAHand === 'paper') {
+		if (playerBHand === 'scissors') {
+			// winner = 'Player 2';
+			winnerText.innerHTML = playerB.name + ' wins';
+			console.log(playerB.name + ' wins!');
 			playerB.wins++;
 		} else {
-			winner = 'Player 1';
-			winnerText.innerHTML = 'Player 1 wins';
-			console.log('Player 1 wins!');
+			// winner = 'Player 1';
+			winnerText.innerHTML = playerA.name + ' wins';
+			console.log(playerA.name + ' wins!');
 			playerA.wins++;
 		}
-	} else if (playerA.currentToss === 'scissors') {
-		if (playerB.currentToss === 'rock') {
-			winner = 'Player 2';
-			winnerText.innerHTML = 'Player 2 wins';
-			console.log('Player 2 wins!');
+	} else if (playerAHand === 'scissors') {
+		if (playerBHand === 'rock') {
+			// winner = 'Player 2';
+			winnerText.innerHTML = playerB.name + ' wins';
+			console.log(playerB.name + ' wins!');
 			playerB.wins++;
 		} else {
-			winner = 'Player 1';
-			winnerText.innerHTML = 'Player 1 wins';
-			console.log('Player 1 wins!');
+			// winner = 'Player 1';
+			winnerText.innerHTML = playerA.name + ' wins';
+			console.log(playerA.name + ' wins!');
 			playerA.wins++;
 		}
 	}
@@ -125,22 +137,23 @@ function scoreKeeper() {
 }
 
 function winnerChecker(a, b) {
-	if (a === 5 || b === 5) {
+	if (a.wins === 5 || b.wins === 5) {
 		playButton.innerText = 'Game over!';
 		playButton.onclick = resetGame;
-		if (a === 5) {
-			console.log('Player 1 Wins the Whole Match!!');
-			console.log('player 1', player1);
+		allUnderFive = false;
+		if (a.wins === 5) {
+			console.log(a.name + 'Wins the Whole Match!!');
+			// console.log('player 1', player1);
 			console.log('score board', scoreBoard);
-			winnerText.innerText = 'Player 1 Wins the Whole Match!!';
+			winnerText.innerText = a.name + ' Wins the Whole Match!!';
 			winner = Array.from(document.getElementById('playerA-score').children)[1];
 			winner.style.cssText = 'color: green';
 			// player1ScoreNumber.style.cssText = 'color: green';
 		} else {
-			console.log('Player 2 Wins the Whole Match!!');
-			console.log('player 2 log', player2);
+			console.log(b.name + ' Wins the Whole Match!!');
+			// console.log('player 2 log', player2);
 			console.log('score board', scoreBoard);
-			winnerText.innerText = 'Player 2 Wins the Whole Match!!';
+			winnerText.innerText = b.name + ' Wins the Whole Match!!';
 			winner = Array.from(document.getElementById('playerB-score').children)[1];
 			winner.style.cssText = 'color: green';
 			// player2ScoreNumber.style.cssText = 'color: green';
@@ -148,23 +161,28 @@ function winnerChecker(a, b) {
 	}
 }
 
-function gamePlayer() {
-	assignToss(currentPlayerA, currentPlayerB);
-	throwDown(currentPlayerA, currentPlayerB);
-	updateScoreBoard(scoreBoard);
-	scoreKeeper();
-	winnerChecker(currentPlayerA.wins, currentPlayerB.wins);
+function gamePlayer(a, b) {
+	// assignToss(player1, player2);
+	if (allUnderFive) {
+		throwDown(a, b);
+		updateScoreBoard(scoreBoard);
+		scoreKeeper();
+		winnerChecker(a, b);
+	} else {
+		console.log('call resetgame func to play another tournament');
+	}
 }
 
 function resetGame() {
-	player1.currentToss = null;
-	player2.currentToss = null;
-	player3.currentToss = null;
-	player4.currentToss = null;
+	// player1.currentToss = null;
+	// player2.currentToss = null;
+	// player3.currentToss = null;
+	// player4.currentToss = null;
 	player1.wins = 0;
 	player2.wins = 0;
 	player3.wins = 0;
 	player4.wins = 0;
+	allUnderFive = true;
 	console.groupEnd();
 	console.group('%cstart new round!', 'font-size: 14px; color: red;');
 	playButton.innerText = 'Play Round!';
