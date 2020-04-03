@@ -3,6 +3,8 @@ var player2ScoreNumber = document.getElementById('playerB-score').children[1];
 var playerThrows = document.getElementById('round-results').children[0];
 var winnerText = document.getElementById('round-results').children[1];
 var playButton = document.getElementById('play-button');
+var pageScoreBoardContainer = document.getElementById('scoreboardcontainer');
+var pageIndividualScores = [document.getElementById('player1BoardScore'), document.getElementById('player2BoardScore'), document.getElementById('player3BoardScore'), document.getElementById('player4BoardScore')];
 var winner;
 var allUnderFive = true;
 

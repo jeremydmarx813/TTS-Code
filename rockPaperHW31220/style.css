@@ -38,6 +38,12 @@ body {
 	width: 100%;
 }
 
+#scoreboardcontainer {
+	width: 100%;
+	display: flex;
+	justify-content: space-evenly;
+}
+
 #round-results {
 	font-size: 1rem;
 	font-weight: 300;
