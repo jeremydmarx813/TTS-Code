@@ -53,11 +53,41 @@
 
 // module.exports = countWords;
 //!!7
-function reduce(arr, fn, initial) {
-	return (function step(idx, value) {
-		if (idx > arr.length - 1) return value;
-		return step(idx + 1, fn(value, arr[idx], idx, arr));
-	})(0, initial);
-}
+// function reduce(arr, fn, initial) {
+// 	return (function step(idx, value) {
+// 		if (idx > arr.length - 1) return value;
+// 		return step(idx + 1, fn(value, arr[idx], idx, arr));
+// 	})(0, initial);
+// }
 
-module.exports = reduce;
+// module.exports = reduce;
+//!!8
+// function duckCount() {
+// 	var realArr = Array.prototype.slice.call(arguments);
+// 	return realArr.filter(function(e) {
+// 		return Object.prototype.hasOwnProperty.call(e, 'quack');
+//     }).length;
+//     //??curriculum answer
+// 	// return Array.prototype.filter.call(arguments, function(arg) {
+// 	// 	return Object.prototype.hasOwnProperty.call(arg, 'quack');
+// 	// }).length;
+// }
+
+// module.exports = duckCount;
+//!!9
+// var slice = Array.prototype.slice;
+
+// function logger(namespace) {
+//     //??Answer found on git hub
+// 	return function() {
+// 		var args = slice.call(arguments);
+// 		console.log.apply(global, [namespace].concat(args));
+// 	};
+// }
+
+// module.exports = logger;
+//!!10
+
+module.exports = function(namespace) {
+	return console.log.bind(null, namespace);
+};
