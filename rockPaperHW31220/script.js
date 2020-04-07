@@ -15,30 +15,32 @@ var allUnderFive = true;
 
 var hands = [ 'rock', 'paper', 'scissors' ];
 
-var player1 = {
-	name       : 'Player 1',
-	wins       : 0,
-	assignToss
-	// currentToss : null
-};
-var player2 = {
-	name       : 'Player 2',
-	wins       : 0,
-	assignToss
-	// currentToss : null
-};
+var allPlayers = {
+	player1 : {
+		name       : 'Player 1',
+		wins       : 0,
+		assignToss
+		// currentToss : null
+	},
+	player2 : {
+		name       : 'Player 2',
+		wins       : 0,
+		assignToss
+		// currentToss : null
+	},
 
-var player3 = {
-	name       : 'Player 3',
-	wins       : 0,
-	assignToss
-	// currentToss : null
-};
-var player4 = {
-	name       : 'Player 4',
-	wins       : 0,
-	assignToss
-	// currentToss : null
+	player3 : {
+		name       : 'Player 3',
+		wins       : 0,
+		assignToss
+		// currentToss : null
+	},
+	player4 : {
+		name       : 'Player 4',
+		wins       : 0,
+		assignToss
+		// currentToss : null
+	}
 };
 
 var scoreBoard = {
@@ -54,11 +56,6 @@ var htmlPlayerB = document.getElementById('playerBMenu').value;
 console.group('%cstart new round!', 'font-size: 14px; color: red;');
 // currentPlayerChecker();
 console.count('Round Number');
-
-function currentPlayerChecker() {
-	console.log('Player A is: ', htmlPlayerA);
-	console.log('Player B is: ', htmlPlayerB);
-}
 
 function assignToss() {
 	// console.log(typeof playerA);
@@ -168,13 +165,30 @@ function winnerChecker(a, b) {
 	}
 }
 
-function gamePlayer(a, b) {
-	// assignToss(player1, player2);
+function gamePlayer() {
+	var currentPlayerA;
+	var currentPlayerB;
+    
+	function currentPlayerChecker(a, b) {
+		console.log('htmlPlayerA %o', htmlPlayerA);
+		console.log('htmlPlayerB %o', htmlPlayerB);
+		for (key in allPlayers) {
+			if (a === key) {
+				currentPlayerA = allPlayers[key];
+			} else if (b === key) {
+				currentPlayerB = allPlayers[key];
+			}
+		}
+		console.log('Player A is: ', currentPlayerA);
+		console.log('Player B is: ', currentPlayerB);
+	}
+
+	currentPlayerChecker(htmlPlayerA, htmlPlayerB);
 	if (allUnderFive) {
-		throwDown(a, b);
+		throwDown(currentPlayerA, currentPlayerB);
 		updateScoreBoard(scoreBoard);
 		scoreKeeper();
-		winnerChecker(a, b);
+		winnerChecker(currentPlayerA, currentPlayerB);
 	} else {
 		console.log('call resetgame func to play another tournament');
 	}

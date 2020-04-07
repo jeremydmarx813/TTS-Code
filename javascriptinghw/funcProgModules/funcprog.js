@@ -61,16 +61,23 @@
 // }
 
 // module.exports = reduce;
+
+// function reduce(arr, fn, initial) {
+
+// }
+
+// module.exports = reduce;
+
 //!!8
 // function duckCount() {
 // 	var realArr = Array.prototype.slice.call(arguments);
 // 	return realArr.filter(function(e) {
 // 		return Object.prototype.hasOwnProperty.call(e, 'quack');
-//     }).length;
-//     //??curriculum answer
-// return Array.prototype.filter.call(arguments, function(arg) {
-// 	return Object.prototype.hasOwnProperty.call(arg, 'quack');
-// }).length;
+// 	}).length;
+// 	//??curriculum answer
+// 	return Array.prototype.filter.call(arguments, function(arg) {
+// 		return Object.prototype.hasOwnProperty.call(arg, 'quack');
+// 	}).length;
 // }
 
 // module.exports = duckCount;
