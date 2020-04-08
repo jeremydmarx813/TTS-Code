@@ -166,9 +166,10 @@ function winnerChecker(a, b) {
 }
 
 function gamePlayer() {
+	debugger;
 	var currentPlayerA;
 	var currentPlayerB;
-    
+
 	function currentPlayerChecker(a, b) {
 		console.log('htmlPlayerA %o', htmlPlayerA);
 		console.log('htmlPlayerB %o', htmlPlayerB);
