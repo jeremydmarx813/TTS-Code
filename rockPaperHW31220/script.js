@@ -179,11 +179,9 @@ function resetGame() {
 	playerThrows.innerText = 'Hit the button to Play the Game!!';
 	winnerText.innerText = '';
 	player1ScoreNumber.innerText = 0;
-	player2ScoreNumber.innerText = 0
+	player2ScoreNumber.innerText = 0;
 	winner.style.cssText = 'color: black';
 	playButton.onclick = gamePlayer;
-	// console.log(document.getElementById('score-row').children);
-	// .style = 'color: black';
 }
 
 playButton.onclick = gamePlayer;
