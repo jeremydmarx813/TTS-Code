@@ -4,6 +4,7 @@ main {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	cursor: default;
 }
 
 header {
@@ -15,6 +16,10 @@ header {
 header div {
 	height: 100%;
 	margin: auto 0;
+}
+
+button {
+	cursor: pointer;
 }
 
 #task-adder {
@@ -64,6 +69,14 @@ header div {
 #task-list {
 	list-style: none;
 }
+
+li {
+	margin-bottom: .4rem;
+}
+
+/* li span {
+	cursor: default;
+} */
 
 .minus-button {
 	margin-right: 8px;
