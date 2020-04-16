@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	function minusButton() {
-		console.log('test');
+         $(this).next().css('text-decoration', 'line-through');
 	}
 
 	Array.from($('#task-list').children()).forEach(function(e) {
