@@ -5,25 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
     <title>Ajax Ex</title>
-    <style>
-       body {
-           display: flex;
-           flex-direction: column;
-           align-items: center;
-       }
-    </style>
 </head>
 <body>
     <header>
-        <div>
+        <div id="headerDiv">
             <h1>AJAX BUTTONS</h1>
         </div>
     </header>
     <main>
-        <div>
-            <button id="button1"></button>
-        </div>
+        <section id="allButtons">
+            <div class="buttonContainer">
+                <button id="button1">Get all posts</button>
+            </div>
+
+        </section>
+        <section id="contentDisplay">
+
+        </section>
     </main>
 </body>
 </html>
