@@ -29,6 +29,11 @@ button:active {
 	background-color: chartreuse;
 }
 
-/* #contentDisplay {
-	
-} */
+#contentDisplay {
+ flex-flow: wrap;	
+}
+
+.postContainer {
+    width: 9rem;
+    margin-top: 2rem;
+}
