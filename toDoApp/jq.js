@@ -1,6 +1,12 @@
 $(document).ready(function() {
 	function minusButton() {
-         $(this).next().css('text-decoration', 'line-through');
+		var that = this;
+		 $(that).next().css('text-decoration', 'line-through');
+		 setTimeout(function(){
+			 $(that).parent().fadeOut('slow', function(){
+				 $(that).parent().remove();
+			 });
+		 }, 2000);
 	}
 
 	Array.from($('#task-list').children()).forEach(function(e) {
@@ -9,15 +15,12 @@ $(document).ready(function() {
 
 	$('#task-add-button').click(function() {
 		if ($('#task-to-add').val() !== '') {
-			// debugger;
 			var newEl = $(`<li><button class="minus-button">-</button><span>${$('#task-to-add').val()}</span></li>`);
 			$(newEl).children('button').click(minusButton);
-
 			$('#task-list').append(newEl);
-
 			$('#task-to-add').val('');
 		} else {
-			console.log('no input value');
+			console.error('no input value');
 		}
 	});
 });
