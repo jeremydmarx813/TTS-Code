@@ -4,12 +4,16 @@
   "description": "test NPM project for TTS",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "mocha",
     "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "moment": "^2.24.0"
+  },
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "mocha": "^7.1.1"
   }
 }
