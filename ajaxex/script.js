@@ -98,10 +98,48 @@ $(document).ready(function() {
 			complete : function(post) {
 				if (post.status === 200) {
 					console.log(post);
-					var newPost = $(`<div class='postContainer'><span>Deletion status: </span><span>${post.statusText}</span></div>`);
+					var newPost = $(
+						`<div class='postContainer'><span>Deletion status: </span><span>${post.statusText}</span></div>`
+					);
 					$(contentDisplay).append(newPost);
 				}
 			}
+		});
+	});
+
+	$('#button9').click(function() {
+		$(contentDisplay).empty();
+		$.get('https://jsonplaceholder.typicode.com/posts', function(posts) {
+			posts.forEach(function(post) {
+				var newPost = $(`<div class='postContainer'><span>${post.id}</span>: <span>${post.title}</span></div>`);
+				$(newPost).click(function() {
+					$(contentDisplay).empty();
+					$.get(`https://jsonplaceholder.typicode.com/posts/${post.id}/comments`, function(comments) {
+						// console.log(post);
+						comments.forEach(function(comment) {
+							var newPost1 = $(
+								`<div class='postContainer'><span>${comment.id}</span>: <span>${comment.name}</span></div>`
+							);
+
+							$(contentDisplay).append(newPost1);
+						});
+						var returnButton = $('<div><button>Go back to all posts</button></div>');
+						$(returnButton).find('button').click(function() {
+							$(contentDisplay).empty();
+							$.get('https://jsonplaceholder.typicode.com/posts', function(posts) {
+								posts.forEach(function(post) {
+									var newPost = $(
+										`<div class='postContainer'><span>${post.id}</span>: <span>${post.title}</span></div>`
+									);
+									$(contentDisplay).append(newPost);
+								});
+							});
+						});
+						$(returnButton).appendTo(contentDisplay);
+					});
+				});
+				$(contentDisplay).append(newPost);
+			});
 		});
 	});
 });
