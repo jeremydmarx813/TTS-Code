@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "es6-promise": "^4.2.8"
+    "es6-promise": "^4.2.8",
+    "q-io": "^1.13.6"
   }
 }
