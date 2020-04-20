@@ -1,0 +1,39 @@
+body,
+header,
+main {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+section {
+    width: 100%;
+    margin-top: 2rem;
+    display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+/* #allButtons {
+	display: flex;
+	flex-direction: row;
+} */
+
+button {
+	border-radius: 1rem;
+	outline: none;
+}
+
+button:active {
+	background-color: chartreuse;
+}
+
+#contentDisplay {
+ flex-flow: wrap;	
+}
+
+.postContainer {
+    width: 9rem;
+    margin-top: 2rem;
+}

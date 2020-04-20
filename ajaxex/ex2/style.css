@@ -1,0 +1,31 @@
+body {
+    height: 600px;
+}
+
+body, form, main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+header {
+    text-align: center;
+}
+
+header, main {
+    width: 80%;
+}
+
+main {
+    height: 40%;
+    justify-content: space-evenly;
+}
+
+form div {
+    display: flex;
+}
+
+input {
+    outline: none;
+}
