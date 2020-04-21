@@ -35,7 +35,44 @@ $(document).ready(function() {
 						posts.forEach(function(e) {
 							var newListItem = $(`<li>${e.title}</li>`);
 							$(newListItem).click(function() {
-								console.log('test');
+								var newPostFull = $(
+									`<div><p><span class="data-field">Title: </span><span>${e.title}</span></p><p><span class="data-field">Post Text: </span><span>${e.body}</span></p><p><h3>Post comments</h3><ul></ul></p><button>Back to user Homepage</button></div>`
+								);
+								$(newPostFull).find('button').click(function() {
+									// console.log('an idea how to make this go back to user hompage!');
+									return getUserFunc(nameFromInput)
+										.then(function(obj) {
+											var objId = obj.id;
+											var promToReturn1 = getUserPosts(objId);
+											var promToReturn2 = getUserAlbums(objId);
+											return Promise.all([ promToReturn1, promToReturn2 ]);
+										})
+										.catch(console.log);
+								});
+
+								var newPostComments = function() {
+									return new Promise(function(pos, neg) {
+										$.get(`http://jsonplaceholder.typicode.com/comments?postId=${e.id}`, function(
+											comments
+										) {
+											if (comments.length) {
+												pos(comments);
+											} else {
+												neg(`no comments found for post ${e.id}`);
+											}
+										});
+									}).then(function(postComments) {
+										console.log(postComments);
+										var listVariable = $(newPostFull).find('ul');
+										postComments.forEach(function(el) {
+											console.log(el.name);
+											$(listVariable).append(`<li>${el.name}</li>`);
+										});
+									}, console.log);
+								};
+								newPostComments();
+								$(resultDisplay).empty();
+								$(resultDisplay).append(newPostFull);
 							});
 							$(postsDiv).children('ul').append(newListItem);
 						});
@@ -73,7 +110,7 @@ $(document).ready(function() {
 		if ($(inputField).val()) {
 			getUserFunc(nameFromInput)
 				.then(function(obj) {
-                    var objId = obj.id;
+					var objId = obj.id;
 					var promToReturn1 = getUserPosts(objId);
 					var promToReturn2 = getUserAlbums(objId);
 					return Promise.all([ promToReturn1, promToReturn2 ]);
