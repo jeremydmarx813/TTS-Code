@@ -1,36 +1,39 @@
 body {
-    height: 600px;
+	height: 600px;
 }
 
-body, form, main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
+body,
+form,
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: start;
 }
 
 header {
-    text-align: center;
+	text-align: center;
 }
 
-header, main {
-    width: 80%;
+header,
+main {
+	width: 80%;
 }
 
 main {
-    margin-top: 5rem;
-    height: 40%;
-    justify-content: space-evenly;
+	margin-top: 11rem;
+	height: 40%;
+	justify-content: space-evenly;
 }
 
 form div {
-    display: flex;
+	display: flex;
 }
 
 input {
-    outline: none;
+	outline: none;
 }
 
 li {
-    cursor: pointer;
+	cursor: pointer;
 }
