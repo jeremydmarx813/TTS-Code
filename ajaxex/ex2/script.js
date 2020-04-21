@@ -94,7 +94,21 @@ $(document).ready(function() {
 						albums.forEach(function(e) {
 							var newListItem = $(`<li>${e.title}</li>`);
 							$(newListItem).click(function() {
-								console.log('test');
+								var newAlbumThumbnails = $(
+									'<div><div><h3>Search for photos</h3><input type="text"></div><div><h3>Album Photo Thumbnails</h3><ul></ul></div><button>Back to user Homepage</button></div>'
+								);
+								$(newAlbumThumbnails).find('button').click(function() {
+									return getUserFunc(nameFromInput)
+										.then(function(obj) {
+											var objId = obj.id;
+											var promToReturn1 = getUserPosts(objId);
+											var promToReturn2 = getUserAlbums(objId);
+											return Promise.all([ promToReturn1, promToReturn2 ]);
+										})
+										.catch(console.log);
+								});
+								$(resultDisplay).empty();
+								$(resultDisplay).append(newAlbumThumbnails);
 							});
 							$(albumsDiv).children('ul').append(newListItem);
 						});
