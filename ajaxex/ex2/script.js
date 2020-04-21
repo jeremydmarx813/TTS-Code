@@ -10,7 +10,8 @@ $(document).ready(function() {
 			return new Promise(function(pos, neg) {
 				$.get(`http://jsonplaceholder.typicode.com/users?username=${n}`, function(results) {
 					//??How do i access status code on response obj
-					//?? Am I getting back json data?
+                    //?? Am I getting back json data?
+                    console.log(results);
 					if (results.length) {
 						var finalRes = results[0];
 						$(resultDisplay).empty();
@@ -20,6 +21,7 @@ $(document).ready(function() {
 						$(resultDisplay).append(newHTML);
 						pos(finalRes);
 					} else {
+                        $(resultDisplay).append('<div><p>Username not found</p></div>')
 						neg(`Username ${n} not found`);
 					}
 				});
@@ -92,11 +94,37 @@ $(document).ready(function() {
 						// console.log(albums);
 						var albumsDiv = $(`<div><h3>User Albums</h3><ul></ul></div>`);
 						albums.forEach(function(e) {
+							console.log(e);
 							var newListItem = $(`<li>${e.title}</li>`);
+							var albumIdNum = e.id;
 							$(newListItem).click(function() {
 								var newAlbumThumbnails = $(
-									'<div><div><h3>Search for photos</h3><input type="text"></div><div><h3>Album Photo Thumbnails</h3><ul></ul></div><button>Back to user Homepage</button></div>'
+									'<div><div><h3>Search for photos</h3><input type="text"></div><div><h3>Album Photo Thumbnails</h3><div id="picCont"></div></div><button>Back to user Homepage</button></div>'
 								);
+
+								var getThumbs = function(n) {
+									return new Promise(function(pos, neg) {
+										$.get(
+											`http://jsonplaceholder.typicode.com/photos?albumId=${albumIdNum}`,
+											function(photos) {
+												if (photos.length) {
+													pos(photos);
+												} else {
+													neg('no photos found');
+												}
+											}
+										).then(function(jsonPics) {
+                                            console.log(jsonPics);
+											jsonPics.forEach(function(p) {
+                                                var newImg = $(`<img heigh="30px" width="30px" src="${p.thumbnailUrl}"></<img>`);
+                                                $(newAlbumThumbnails).find('div#picCont').append(newImg);
+											});
+										}, console.log);
+									});
+								};
+
+								getThumbs(albumIdNum);
+
 								$(newAlbumThumbnails).find('button').click(function() {
 									return getUserFunc(nameFromInput)
 										.then(function(obj) {
@@ -122,6 +150,7 @@ $(document).ready(function() {
 		};
 
 		if ($(inputField).val()) {
+            $(resultDisplay).empty();
 			getUserFunc(nameFromInput)
 				.then(function(obj) {
 					var objId = obj.id;
@@ -133,7 +162,8 @@ $(document).ready(function() {
 					console.log('promise all itterable arr: %o', results);
 				}, console.log);
 		} else {
-			console.error('no input entered');
+            console.error('no input entered');
+            $(resultDisplay).empty();
 			$(resultDisplay).append(`<div><p>Error retrieving user</p></div>`);
 		}
 	});
