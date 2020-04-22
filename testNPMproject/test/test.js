@@ -1,10 +1,8 @@
 var assert = require('assert');
+var Data = require('../DataAccess');
 
-
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal([1, 2, 3].indexOf(4), -1);
-    });
-  });
+describe('time func test', function() {
+	it('returns what is put in to function', function() {
+		assert.equal(Data.getPost('sup'), 'sup');
+	});
 });

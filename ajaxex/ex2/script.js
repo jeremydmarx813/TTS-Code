@@ -10,8 +10,9 @@ $(document).ready(function() {
 			return new Promise(function(pos, neg) {
 				$.get(`http://jsonplaceholder.typicode.com/users?username=${n}`, function(results) {
 					//??How do i access status code on response obj
-                    //?? Am I getting back json data?
-                    console.log(results);
+					//?? Am I getting back json data?
+					console.log(results);
+
 					if (results.length) {
 						var finalRes = results[0];
 						$(resultDisplay).empty();
@@ -21,7 +22,7 @@ $(document).ready(function() {
 						$(resultDisplay).append(newHTML);
 						pos(finalRes);
 					} else {
-                        $(resultDisplay).append('<div><p>Username not found</p></div>')
+						$(resultDisplay).append('<div><p>Username not found</p></div>');
 						neg(`Username ${n} not found`);
 					}
 				});
@@ -114,10 +115,12 @@ $(document).ready(function() {
 												}
 											}
 										).then(function(jsonPics) {
-                                            console.log(jsonPics);
+											console.log(jsonPics);
 											jsonPics.forEach(function(p) {
-                                                var newImg = $(`<img heigh="30px" width="30px" src="${p.thumbnailUrl}"></<img>`);
-                                                $(newAlbumThumbnails).find('div#picCont').append(newImg);
+												var newImg = $(
+													`<img heigh="30px" width="30px" src="${p.thumbnailUrl}"></<img>`
+												);
+												$(newAlbumThumbnails).find('div#picCont').append(newImg);
 											});
 										}, console.log);
 									});
@@ -150,7 +153,7 @@ $(document).ready(function() {
 		};
 
 		if ($(inputField).val()) {
-            $(resultDisplay).empty();
+			$(resultDisplay).empty();
 			getUserFunc(nameFromInput)
 				.then(function(obj) {
 					var objId = obj.id;
@@ -162,8 +165,8 @@ $(document).ready(function() {
 					console.log('promise all itterable arr: %o', results);
 				}, console.log);
 		} else {
-            console.error('no input entered');
-            $(resultDisplay).empty();
+			console.error('no input entered');
+			$(resultDisplay).empty();
 			$(resultDisplay).append(`<div><p>Error retrieving user</p></div>`);
 		}
 	});
