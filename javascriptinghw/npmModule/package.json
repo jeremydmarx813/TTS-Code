@@ -1,0 +1,15 @@
+{
+  "name": "@jdm813/npmmodule",
+  "version": "2.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": "github.com",
+  "description": "",
+  "dependencies": {
+    "@linclark/pkg": "^1.0.3"
+  }
+}
