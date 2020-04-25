@@ -13,10 +13,9 @@ module.exports = {
 				test : /\.css$/,
 				use  : [ { loader: 'style-loader' }, { loader: 'css-loader' } ]
 			},
-            { test: /\.js$/, loader: 'eslint-loader', exclude: '/node_modules/' }
-            // ,
-			// { test: /\.js$/, loader: 'babel-loader', exclude:  '/node_modules/'  },
-			// { test: /\.jsx$/, loader: 'babel-loader', exclude:  '/node_modules/'  }
+			{ test: /\.js$/, loader: 'eslint-loader', exclude: '/node_modules/' },
+			{ test: /\.js$/, loader: 'babel-loader', exclude: '/node_modules/' },
+			{ test: /\.jsx$/, loader: 'babel-loader', exclude: '/node_modules/' }
 		]
 	},
 	resolve   : {
