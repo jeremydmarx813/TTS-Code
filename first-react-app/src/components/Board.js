@@ -23,11 +23,14 @@ class Board extends React.Component {
           }
     }
 
-    addNote() {
+    addNote(e) {
+      let titleToAdd = e.target.querySelector('#titleVal').value;
+        let bodyToAdd = e.target.querySelector('#bodyVal').value;
+        
         this.state.notes.push(
           {
-            title: "New Note Title",
-            body: "New Note body"
+            title: titleToAdd,
+            body: bodyToAdd
           }
         );
         this.setState(
@@ -40,17 +43,23 @@ class Board extends React.Component {
     render(){
         return (
             <div>
-        <div className="div-board">
-          <div className="row">
-            {this.state.notes.map(note => {
-                return <Note title={note.title} body={note.body} />;
-            })}
-          </div>
-        </div>
-        <div>
-          <button className="btn btn-success add-button" onClick={this.addNote.bind(this)}>Add</button>
-        </div>
-      </div>
+               <div className="div-board">
+                  <div className="row">
+                   {this.state.notes.map(note => {
+                    return <Note title={note.title} body={note.body} />;
+                    })}
+                  </div>
+               </div>
+            <form action="#" onSubmit={this.addNote.bind(this)}>
+             <div className="form-group flex-column col-sm-6">
+                <label>New Title</label>
+                <input id="titleVal" type="text" />
+                <label>New Body</label>
+                <input id="bodyVal" type="text" />
+                <button className="btn btn-success add-button">Add</button>
+              </div>
+            </form>
+             </div>
         )
     }
 }

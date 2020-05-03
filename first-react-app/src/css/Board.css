@@ -6,3 +6,8 @@
 .add {
   margin: 1rem 15px 0;
 }
+ input {
+   margin-left: .5em;
+   outline: none;
+   background-color: #80808021;
+ }
