@@ -28,7 +28,7 @@ class Board extends React.Component {
             ]
           }
        this.addNote = this.addNote.bind(this);
-       this.deleteNote = this.deleteNote.bind(this);
+       
     }
 
     addNote(e) {
@@ -51,9 +51,7 @@ class Board extends React.Component {
         );
       }
 
-      deleteNote(){
-         console.log(this.props);
-      }
+    
 
     render(){
         return (
@@ -63,7 +61,7 @@ class Board extends React.Component {
                    {this.state.notes.filter(note => {
                     return !note.toDelete;
                     }).map(filtNote => {
-                      return <Note noteId={filtNote.id} title={filtNote.title} body={filtNote.body} delFunc={this.deleteNote} />;
+                      return <Note key={filtNote.id} noteId={filtNote.id} title={filtNote.title} body={filtNote.body}  />;
                     }) }
                   </div>
                </div>

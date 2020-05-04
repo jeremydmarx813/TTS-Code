@@ -5,7 +5,12 @@ import PropTypes from 'prop-types';
 class Note extends React.Component {
   constructor(props) {
     super(props);
+    this.deleteNote = this.deleteNote.bind(this);
   }
+
+  deleteNote(){
+    console.log(this.props.noteId);
+ }
 
   render() {
     return (
@@ -15,7 +20,7 @@ class Note extends React.Component {
             <h5 className="card-title">{this.props.title}</h5>
             <p>{this.props.body}</p>
             <button className="btn btn-info">Edit</button>
-            <button className="btn btn-danger" onClick={this.props.delFunc} testId={this.props.noteId}>Delete</button>
+            <button className="btn btn-danger" onClick={this.deleteNote}>Delete</button>
           </div>
         </div>
       </div>
