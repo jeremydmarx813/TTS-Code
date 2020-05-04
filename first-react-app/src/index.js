@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Board from './components/Board.js';
+import Board from './components/Board';
+import Header from './components/Header';
 import './css/Board.css';
 import * as registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
+    <Header />
     <Board />
   </React.StrictMode>,
   document.getElementById('root')
