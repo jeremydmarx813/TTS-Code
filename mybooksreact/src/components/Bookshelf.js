@@ -21,7 +21,6 @@ import PropTypes from 'prop-types';
         if (this.updateTimer) return;
         this.setState({ books: this.props.books });
         this.updateTimer = setTimeout(() => {
-            console.log(' test book added');
           this.updateTimer = null;
         }, 1000);
       }

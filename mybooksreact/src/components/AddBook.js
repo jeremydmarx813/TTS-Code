@@ -31,19 +31,19 @@ import React from 'react'
         return (
             <form action="#" onSubmit={this.addBook} className="d-flex flex-column align-items-center">
                 <div className="form-group row text-center">
-                   <label for="title" className="col-sm-2 col-form-label">Title</label>
+                   <label htmlFor="title" className="col-sm-2 col-form-label">Title</label>
                     <div className="col-sm-10">
                        <input type="text" className="form-control" name="title" id="title" onChange={this.handleChange} value={this.state.title}/>
                      </div>
                 </div>
                 <div className="form-group row text-center">
-                   <label for="author" className="col-sm-2 col-form-label">Author</label>
+                   <label htmlFor="author" className="col-sm-2 col-form-label">Author</label>
                     <div className="col-sm-10">
                       <input type="text" className="form-control" name="author" id="author" onChange={this.handleChange} value={this.state.author}/>
                    </div>
                 </div>
                 <div className="form-group row text-center">
-                    <label for="year" className="col-sm-2 col-form-label">Year</label>
+                    <label htmlFor="year" className="col-sm-2 col-form-label">Year</label>
                     <div className="col-sm-10">
                       <input type="text" className="form-control" name="year" id="year" onChange={this.handleChange} value={this.state.year}/>
                      </div>
@@ -54,15 +54,15 @@ import React from 'react'
                        <div className="col-sm-10">
                           <div className="form-check">
                               <input className="form-check-input" type="radio" name="genre" id="radioFiction" value="Fiction" />
-                              <label className="form-check-label" for="radioFiction">Fiction</label>
+                              <label className="form-check-label" htmlFor="radioFiction">Fiction</label>
                           </div>
                          <div className="form-check">
                                <input className="form-check-input" type="radio" name="genre" id="radioHistory" value="History" />
-                              <label className="form-check-label" for="radioHistory">History</label>
+                              <label className="form-check-label" htmlFor="radioHistory">History</label>
                          </div>
                         <div className="form-check">
                             <input className="form-check-input" type="radio" name="genre" id="radioMusic" value="Music" />
-                            <label className="form-check-label" for="gridRadios3" >Music</label>
+                            <label className="form-check-label" htmlFor="gridRadios3" >Music</label>
                         </div>
                      </div>
                    </div>

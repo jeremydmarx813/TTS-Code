@@ -17,42 +17,42 @@ class App extends React.Component {
           id: uuidv4(),
           title: 'Harry Potter and the Order of the Phoenix',
           author: 'J.K Rowling',
-          year: '2004',
+          year: '2003',
           genre: 'Fiction'
       },
       {
           id: uuidv4(),
           title: 'Doomed to Succeed',
           author: 'Dennis Ross',
-          year: '2012',
+          year: '2015',
           genre: 'History'
       },
       {
           id: uuidv4(),
           title: 'Room Full of Mirrors',
           author: 'Charles Cross',
-          year: '2008',
+          year: '2005',
           genre: 'Music'
       }, 
       {
           id: uuidv4(),
           title: 'Redwall',
           author: 'Brian Jaques',
-          year: '1999',
+          year: '1986',
           genre: 'Fiction'
       },
       {
           id: uuidv4(),
           title: 'Heavier than Heaven',
           author: 'Charles Cross',
-          year: '2011',
+          year: '2001',
           genre: 'Music'
       },
       {
           id: uuidv4(),
           title: 'Fire and Fury',
           author: 'Michael Wolff',
-          year: '2017',
+          year: '2018',
           genre: 'History'
       }
       
