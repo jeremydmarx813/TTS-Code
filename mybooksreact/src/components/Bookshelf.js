@@ -1,59 +1,36 @@
 import React from 'react';
 import Book from './Book.js';
 
-import { v4 as uuidv4 } from 'uuid';
+
 
  class Bookshelf extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            books: [
-                {
-                    id: uuidv4(),
-                    title: 'Harry Potter and the Order of the Phoenix',
-                    author: 'J.K Rowling',
-                    year: '2004',
-                    genre: 'Fiction'
-                },
-                {
-                    id: uuidv4(),
-                    title: 'Doomed to Succeed',
-                    author: 'Dennis Ross',
-                    year: '2012',
-                    genre: 'History'
-                },
-                {
-                    id: uuidv4(),
-                    title: 'Room Full of Mirrors',
-                    author: 'Charles Cross',
-                    year: '2008',
-                    genre: 'Music'
-                }, 
-                {
-                    id: uuidv4(),
-                    title: 'Redwall',
-                    author: 'Brian Jaques',
-                    year: '1999',
-                    genre: 'Fiction'
-                },
-                {
-                    id: uuidv4(),
-                    title: 'Heavier than Heaven',
-                    author: 'Charles Cross',
-                    year: '2011',
-                    genre: 'Music'
-                },
-                {
-                    id: uuidv4(),
-                    title: 'Fire and Fury',
-                    author: 'Michael Wolff',
-                    year: '2017',
-                    genre: 'History'
-                }
-                
-            ]
+           books: this.props.books
         }
     }
+
+    componentWillUnmount() {
+        if (this.updateTimer) {
+          clearTimeout(this.updateTimer);
+        }
+      }
+    
+      updateAndNotify = () => {
+        if (this.updateTimer) return;
+        this.setState({ books: this.props.books });
+        this.updateTimer = setTimeout(() => {
+            console.log(' test book added');
+          this.updateTimer = null;
+        }, 1000);
+      }
+
+      componentDidUpdate(prevProps) {
+        if (prevProps.books.length !== this.props.books.length) {
+          this.updateAndNotify();
+        }
+      }
 
     delBook = id => {
        this.setState({ books: [...this.state.books].filter(b => b.id !== id)});
