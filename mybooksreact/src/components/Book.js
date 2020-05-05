@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Book extends React.Component {
     constructor(props){
@@ -52,6 +53,11 @@ class Book extends React.Component {
 
         return this.state.editMode ? editCard : finalCard;
     }
+}
+
+Book.propTypes = {
+    book: PropTypes.object.isRequired,
+    delBook: PropTypes.func.isRequired
 }
 
 export default Book
