@@ -16,19 +16,21 @@ class AddForm extends React.Component {
    }
 
    addNote = e => {
-       e.preventDefault();
-       this.props.addCard(this.state.titleVal, this.state.bodyVal);
-       this.setState( { titleVal: '', bodyVal: ''} );
+       
+           e.preventDefault();
+           this.props.addCard(this.state.titleVal, this.state.bodyVal);
+           this.setState( { titleVal: '', bodyVal: ''} );
+       
    }
 
     render() {
         return (
             <form action="#" onSubmit={this.addNote} className="flex-column">
-                   <div className="form-group flex-column col-sm-6">
+                   <div className="form-group row col-sm-6">
                       <label>New Title</label>
                       <input name="titleVal" type="text" value={this.state.titleVal} onChange={this.formChange}/>
                     </div>
-                    <div className="form-group flex-column">
+                    <div className="form-group row">
                       <label>New Body</label>
                       <input name="bodyVal" type="text" value={this.state.bodyVal} onChange={this.formChange}/>
                     </div>

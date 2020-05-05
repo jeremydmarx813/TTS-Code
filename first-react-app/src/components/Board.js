@@ -34,16 +34,22 @@ class Board extends React.Component {
     }
 
     addCard(title, body) {
+     
       let newCard = {
         id: uuidv4(),
         title,
         body
       }
+      if(title.length && body.length){
+
         this.setState(
           {
             notes: [...this.state.notes, newCard]
           }
         );
+       } else {
+         console.log('Need Form input for add feature to work');
+       }
       }
 
    delNote = id => {
