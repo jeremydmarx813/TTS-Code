@@ -60,16 +60,16 @@ class App extends React.Component {
    };
  }
 
- addBook = e => {
-   e.preventDefault();
-   const testBook = {
+ addBook = obj => {
+   
+   const newBook = {
     id: uuidv4(),
-    title: 'Eloquent JS',
-    author: 'Genius',
-    year: '2015',
-    genre: 'History'
+    title: obj.title,
+    author: obj.author,
+    year: obj.year,
+    genre: obj.genre
    }
-   this.setState({ books: [...this.state.books, testBook] });
+   this.setState({ books: [...this.state.books, newBook] });
  }
 
   render () {

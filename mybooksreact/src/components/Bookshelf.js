@@ -39,7 +39,7 @@ import Book from './Book.js';
     render() {
         const { genre } = this.props;
         return (
-            <div>
+            <div className="text-center bg-info">
                 <h2>{genre}</h2>
                 {this.state.books.filter(book => book.genre === genre)
                 .map(b => <Book key={b.id} book={b} delBook={this.delBook}/> )}
