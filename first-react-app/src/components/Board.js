@@ -1,6 +1,8 @@
 import React from "react";
 import '../css/Board.css';
-import Note from './Note.js';
+import Note from './Note';
+import AddForm from './AddForm';
+import { v4 as uuidv4 } from 'uuid';
 
 class Board extends React.Component {
     constructor(props){
@@ -8,73 +10,62 @@ class Board extends React.Component {
         this.state = {
             notes: [
               {
-                id: 1,
+                id: uuidv4(),
                 title: "Class Notes",
-                body: "Always use constructors when extending another class",
-                toDelete: false
+                body: "Always use constructors when extending another class"
+                
               },
               {
-                id: 2,
+                id: uuidv4(),
                 title: "My New Address",
-                body: "2001 N Lonhill Phoenix, AZ 81234",
-                toDelete: false
+                body: "2001 N Lonhill Phoenix, AZ 81234"
+              
               },
               {
-                id: 3,
+                id: uuidv4(),
                 title: "React Notes",
-                body: "Everything in React is a component",
-                toDelete: false
+                body: "Everything in React is a component"
+                
               }
             ]
           }
-       this.addNote = this.addNote.bind(this);
+       this.addCard = this.addCard.bind(this);
        
     }
 
-    addNote(e) {
-      let titleToAdd = e.target.querySelector('#titleVal').value;
-        let bodyToAdd = e.target.querySelector('#bodyVal').value;
-        
-        this.state.notes.push(
-          { 
-            id: this.state.notes.length + 1,
-            title: titleToAdd,
-            body: bodyToAdd,
-            toDelete: false 
-          }
-        );
-
+    addCard(title, body) {
+      let newCard = {
+        id: uuidv4(),
+        title,
+        body
+      }
         this.setState(
           {
-            notes: this.state.notes
+            notes: [...this.state.notes, newCard]
           }
         );
       }
 
+   delNote = id => {
+     this.setState({
+       notes: [...this.state.notes].filter(n => n.id !== id)
+     });
+   }
     
 
     render(){
         return (
-            <div>
+           <div>
                <div className="div-board">
                   <div className="row">
-                   {this.state.notes.filter(note => {
-                    return !note.toDelete;
-                    }).map(filtNote => {
-                      return <Note key={filtNote.id} noteId={filtNote.id} title={filtNote.title} body={filtNote.body}  />;
-                    }) }
+                   {this.state.notes.map(note => {
+                     const { id, title, body } = note;
+                    return <Note key={id} noteId={id} title={title} body={body} delNote={this.delNote} />;
+                    })}
                   </div>
                </div>
-            <form action="#" onSubmit={this.addNote}>
-             <div className="form-group flex-column col-sm-6">
-                <label>New Title</label>
-                <input id="titleVal" type="text" />
-                <label>New Body</label>
-                <input id="bodyVal" type="text" />
-                <button className="btn btn-success add-button">Add</button>
-              </div>
-            </form>
-             </div>
+              <AddForm addCard={this.addCard} />
+           </div>
         )
     }
 }
