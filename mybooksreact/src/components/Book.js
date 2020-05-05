@@ -32,7 +32,7 @@ class Book extends React.Component {
                  <h3>{author}</h3> 
                  <h3>{year}</h3>
                  <button className="btn btn-warning btn-sm" onClick={this.toggleEdit}>Edit</button>
-                 <button className="btn btn-danger btn-sm">Delete</button>
+                 <button className="btn btn-danger btn-sm" onClick={this.props.delBook.bind(this, this.props.book.id)}>Delete</button>
                </div>
             </div>
         );

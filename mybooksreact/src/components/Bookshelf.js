@@ -1,5 +1,6 @@
 import React from 'react';
 import Book from './Book.js';
+
 import { v4 as uuidv4 } from 'uuid';
 
  class Bookshelf extends React.Component {
@@ -54,13 +55,17 @@ import { v4 as uuidv4 } from 'uuid';
         }
     }
 
+    delBook = id => {
+       this.setState({ books: [...this.state.books].filter(b => b.id !== id)});
+    }
+    
     render() {
         const { genre } = this.props;
         return (
             <div>
                 <h2>{genre}</h2>
                 {this.state.books.filter(book => book.genre === genre)
-                .map(b => <Book book={b}/> )}
+                .map(b => <Book key={b.id} book={b} delBook={this.delBook}/> )}
                 
             </div>
         )
