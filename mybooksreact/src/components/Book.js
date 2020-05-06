@@ -8,14 +8,22 @@ class Book extends React.Component {
             title: this.props.book.title,
             author: this.props.book.author,
             year: this.props.book.year,
-            editMode: false
+            editMode: false,
+            isRead: false
         }
         this.toggleEdit = this.toggleEdit.bind(this);
+        this.toggleRead = this.toggleRead.bind(this);
         this.inputChange = this.inputChange.bind(this);
     }
 
     toggleEdit = e => {
         this.setState({editMode: !this.state.editMode});
+    }
+  
+    toggleRead = e => {
+        this.state.isRead ?  e.target.innerText = "Unread" : e.target.innerText = "Read";
+        this.state.isRead ?  e.target.className = "btn-warning" : e.target.className = "btn-success";
+        this.setState({ isRead: !this.state.isRead });
     }
 
     inputChange = e => {
@@ -34,6 +42,7 @@ class Book extends React.Component {
                  <h3>{year}</h3>
                  <button className="btn btn-warning btn-sm" onClick={this.toggleEdit}>Edit</button>
                  <button className="btn btn-danger btn-sm" onClick={this.props.delBook.bind(this, this.props.book.id)}>Delete</button>
+                 <button className="btn btn-warning btn-sm" onClick={this.toggleRead}>Unread</button>
                </div>
             </div>
         );
@@ -45,8 +54,9 @@ class Book extends React.Component {
                <div className="card-body">
                  <input type="text" name="author" onChange={this.inputChange} value={author}/> 
                  <input type="text" name="year" onChange={this.inputChange} value={year}/> 
-                 <button className="btn btn-warning btn-sm" onClick={this.toggleEdit}>Edited</button>
+                 <button className="btn btn-warning btn-sm" onClick={this.toggleEdit}>Save</button>
                  <button className="btn btn-danger btn-sm">Delete</button>
+                 <button className="btn btn-warning btn-sm" onClick={this.toggleRead}>Unread</button>
                </div>
             </div>
         )

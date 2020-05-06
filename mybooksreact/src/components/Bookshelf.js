@@ -40,8 +40,7 @@ import PropTypes from 'prop-types';
         return (
             <div className="text-center bg-info">
                 <h2>{genre}</h2>
-                {this.state.books.filter(book => book.genre === genre)
-                .map(b => <Book key={b.id} book={b} delBook={this.delBook}/> )}
+                {this.state.books.map(b => <Book key={b.id} book={b} delBook={this.delBook}/> )}
                 
             </div>
         )

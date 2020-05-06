@@ -61,7 +61,7 @@ class App extends React.Component {
  }
 
  addBook = obj => {
-   
+    
    const newBook = {
     id: uuidv4(),
     title: obj.title,
@@ -69,7 +69,16 @@ class App extends React.Component {
     year: obj.year,
     genre: obj.genre
    }
-   this.setState({ books: [...this.state.books, newBook] });
+   
+   const newBookIsReady = Object.values(newBook).every(val => val.length !== 0);
+   
+   if(newBookIsReady){
+
+     this.setState({ books: [...this.state.books, newBook] });
+   } else {
+     console.log('not enough info for book');
+   }
+
  }
 
   render () {
