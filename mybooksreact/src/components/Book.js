@@ -41,9 +41,9 @@ class Book extends React.Component {
                <div className="card-body">
                  <h3>{author}</h3> 
                  <h3>{year}</h3>
-                 <button className="btn btn-warning btn-sm" onClick={this.toggleEdit}>Edit</button>
-                 <button className="btn btn-danger btn-sm" onClick={this.props.delBook.bind(this, this.props.book.id)}>Delete</button>
-                 <button className="btn btn-warning btn-sm" onClick={this.toggleRead}>Unread</button>
+                 <button className="btn btn-warning btn-sm mx-2" onClick={this.toggleEdit}>Edit</button>
+                 <button className="btn btn-danger btn-sm mx-2" onClick={this.props.delBook.bind(this, this.props.book.id)}>Delete</button>
+                 <button className="btn btn-warning btn-sm mx-2" onClick={this.toggleRead}>Unread</button>
                </div>
             </div>
         );

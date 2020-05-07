@@ -1,6 +1,6 @@
 import React from 'react';
 import Book from './Book.js';
-import EasterBunny from './locations/EasterBunny';
+// import EasterBunny from './locations/EasterBunny';
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 
@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
            books: this.props.books
         }
     }
-
+    //Don't Understand this code from Pluralsight!!!!
     componentWillUnmount() {
         if (this.updateTimer) {
           clearTimeout(this.updateTimer);
@@ -32,7 +32,7 @@ import PropTypes from 'prop-types';
           this.updateAndNotify();
         }
       }
-
+   //////////////////////////////////////////////////////////////////////
     delBook = id => {
        this.setState({ books: [...this.state.books].filter(b => b.id !== id)});
     }
@@ -43,7 +43,7 @@ import PropTypes from 'prop-types';
             <div className="text-center bg-info">
                 <h2>{genre}</h2>
                 {this.state.books.map((b, i) => {
-                if(b.title === 'Redwall'){
+                if(b.isBunny){
                   return (
                     <Link to="easter-bunny-puppy" style={linkStyle} key={i}>
                        <Book key={b.id} book={b} delBook={this.delBook}/>
