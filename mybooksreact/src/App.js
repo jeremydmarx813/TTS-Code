@@ -1,8 +1,10 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Bookshelf from './components/Bookshelf';
 import Header from './components/Header';
 import AddBook from './components/AddBook';
+import EasterBunny from './components/locations/EasterBunny';
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -83,13 +85,20 @@ class App extends React.Component {
 
   render () {
     return (
+      <Router>
       <div className="App">
         <Header />
-        <AddBook addBook={this.addBook}/>
-        {this.state.genres.map((g, i) => (
-           <Bookshelf key={i} genre={g} books={this.state.books.filter(b => b.genre === g)}/>
-        ))}
+        <Route exact path="/" render={props => (
+           <React.Fragment>
+             <AddBook addBook={this.addBook}/>
+             {this.state.genres.map((g, i) => (
+                <Bookshelf key={i} genre={g} books={this.state.books.filter(b => b.genre === g)}/>
+             ))}
+           </React.Fragment>
+        )}/>
+        <Route path="/easter-bunny-puppy" component={EasterBunny} />
       </div>
+      </Router>
     );
 
   }

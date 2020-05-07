@@ -1,5 +1,7 @@
 import React from 'react';
 import Book from './Book.js';
+import EasterBunny from './locations/EasterBunny';
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 
 
@@ -40,11 +42,27 @@ import PropTypes from 'prop-types';
         return (
             <div className="text-center bg-info">
                 <h2>{genre}</h2>
-                {this.state.books.map(b => <Book key={b.id} book={b} delBook={this.delBook}/> )}
+                {this.state.books.map(b => {
+                if(b.title === 'Redwall'){
+                  return (
+                    <Link to="easter-bunny-puppy" style={linkStyle}>
+                       <Book key={b.id} book={b} delBook={this.delBook}/>
+                    </Link>
+                  )
+                } else {
+                  return <Book key={b.id} book={b} delBook={this.delBook}/>;
+                }
+                } 
+                )}
                 
             </div>
         )
     }
+}
+
+const linkStyle = {
+  color: '#000000',
+  textDecoration: 'none'
 }
 
 Bookshelf.propTypes = {
