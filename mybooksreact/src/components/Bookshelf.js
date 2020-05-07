@@ -42,10 +42,10 @@ import PropTypes from 'prop-types';
         return (
             <div className="text-center bg-info">
                 <h2>{genre}</h2>
-                {this.state.books.map(b => {
+                {this.state.books.map((b, i) => {
                 if(b.title === 'Redwall'){
                   return (
-                    <Link to="easter-bunny-puppy" style={linkStyle}>
+                    <Link to="easter-bunny-puppy" style={linkStyle} key={i}>
                        <Book key={b.id} book={b} delBook={this.delBook}/>
                     </Link>
                   )

@@ -9,7 +9,8 @@ class Book extends React.Component {
             author: this.props.book.author,
             year: this.props.book.year,
             editMode: false,
-            isRead: false
+            isRead: false,
+            isBunny: this.props.book.isBunny
         }
         this.toggleEdit = this.toggleEdit.bind(this);
         this.toggleRead = this.toggleRead.bind(this);
