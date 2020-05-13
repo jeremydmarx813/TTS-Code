@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-class EasterBunny extends React.Component {
+class IndividualLocation extends React.Component {
     render() {
         return (
         <Link to="/" style={linkStyle}>
@@ -24,4 +24,4 @@ const linkStyle = {
     cursor: 'auto'
 }
 
-export default EasterBunny;
+export default IndividualLocation;

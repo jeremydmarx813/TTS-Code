@@ -9,27 +9,27 @@ import React from 'react'
             year: '',
             genre: ''
         };
-        this.handleChange = this.handleChange.bind(this);
+        
     }
 
     handleChange = e => {
        this.setState({ [e.target.name]: e.target.value });
     }
 
-    addBook = e => {
-        e.preventDefault();
-        this.props.addBook(this.state);
-        this.setState({
-            title: '',
-            author: '',
-            year: '',
-            genre: ''
-        })
-    }
+    // addBook = e => {
+    //     e.preventDefault();
+    //     this.props.addBook(this.state);
+    //     this.setState({
+    //         title: '',
+    //         author: '',
+    //         year: '',
+    //         genre: ''
+    //     })
+    // }
 
     render() {
         return (
-            <form action="#" onSubmit={this.addBook} className="d-flex flex-column align-items-center">
+            <form action="#"  className="d-flex flex-column align-items-center">
                 <div className="form-group row text-center">
                    <label htmlFor="title" className="col-sm-2 col-form-label">Title</label>
                     <div className="col-sm-10">
