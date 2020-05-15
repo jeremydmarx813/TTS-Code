@@ -1,8 +1,11 @@
 import React from "react";
+
+
 import '../css/Board.css';
 import Note from './Note';
 import AddForm from './AddForm';
 import { v4 as uuidv4 } from 'uuid';
+
 
 class Board extends React.Component {
     constructor(props){
