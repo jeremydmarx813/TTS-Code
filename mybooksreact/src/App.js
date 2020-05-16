@@ -1,18 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import { BookState } from './components/BookState';
-import AllGenres from './components/AllGenres';
+// import AllGenres from './components/AllGenres';
 // import Bookshelf from './components/Bookshelf';
 import Header from './components/Header';
-import AddBook from './components/AddBook';
+
 import IndividualLocation from './components/locations/IndividualLocation';
+import HomePage from './components/HomePage';
 
 // import axios from 'axios';
 
-const App = props => {
-	
-
+const App = (props) => {
 	// addBook = (obj) => {
 	// 	const newBook = {
 	// 		id      : uuidv4(),
@@ -32,30 +31,23 @@ const App = props => {
 	// 	}
 	// };
 
-	
-		return (
-			<BookState>
-				{() => (
-					<Router>
+	return (
+		<BookState>
+			{() => (
+				<Router>
+					<React.Fragment>
+						<Header />
 						<div className="App">
-							<Header />
-							<Route
-								exact
-								path="/"
-								render={(props) => (
-									<React.Fragment>
-										<AddBook />
-										<AllGenres />
-									</React.Fragment>
-								)}
-							/>
-							<Route path="/individual-location" component={IndividualLocation} />
+							<Switch>
+								<Route exact path="/" component={HomePage} />
+								<Route path="/individual-location/:book-id" component={IndividualLocation} />
+							</Switch>
 						</div>
-					</Router>
-				)}
-			</BookState>
-		);
-	
-}
+					</React.Fragment>
+				</Router>
+			)}
+		</BookState>
+	);
+};
 
 export default App;

@@ -12,9 +12,6 @@ class Book extends React.Component {
             isRead: false,
             isBunny: this.props.book.isBunny
         }
-        this.toggleEdit = this.toggleEdit.bind(this);
-        this.toggleRead = this.toggleRead.bind(this);
-        this.inputChange = this.inputChange.bind(this);
     }
 
     toggleEdit = e => {
