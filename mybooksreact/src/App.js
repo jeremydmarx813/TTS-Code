@@ -6,8 +6,8 @@ import { BookState } from './components/BookState';
 // import Bookshelf from './components/Bookshelf';
 import Header from './components/Header';
 
-import IndividualLocation from './components/locations/IndividualLocation';
 import HomePage from './components/HomePage';
+import IndividualLocation from './components/locations/IndividualLocation';
 
 // import axios from 'axios';
 
@@ -33,19 +33,17 @@ const App = (props) => {
 
 	return (
 		<BookState>
-			{() => (
-				<Router>
-					<React.Fragment>
-						<Header />
-						<div className="App">
-							<Switch>
-								<Route exact path="/" component={HomePage} />
-								<Route path="/individual-location/:book-id" component={IndividualLocation} />
-							</Switch>
-						</div>
-					</React.Fragment>
-				</Router>
-			)}
+			<Router>
+				<React.Fragment>
+					<Header />
+					<div className="App">
+						<Switch>
+							<Route exact path="/" component={HomePage} />
+							<Route path="/individual-location/:book-id" component={IndividualLocation} />
+						</Switch>
+					</div>
+				</React.Fragment>
+			</Router>
 		</BookState>
 	);
 };

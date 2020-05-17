@@ -1,14 +1,11 @@
 import React from 'react';
 import { BookContextClient } from './BookState';
-// import Book from './Book.js';
+import Book from './Book.js';
 // import EasterBunny from './locations/EasterBunny';
 // import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
-class Bookshelf extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+const Bookshelf = (props) => {
 	//Don't Understand this code from Pluralsight!!!!
 	// componentWillUnmount() {
 	//     if (this.updateTimer) {
@@ -34,26 +31,39 @@ class Bookshelf extends React.Component {
 	//    this.setState({ books: [...this.state.books].filter(b => b.id !== id)});
 	// }
 
-	render() {
-		// const { genre } = this.props;
-		return (
-			<BookContextClient>
-				{(value) => {
-					return (
-						<React.Fragment>
-							<h1>test</h1>
-						</React.Fragment>
-					);
-				}}
-			</BookContextClient>
-		);
-	}
-}
-
-const linkStyle = {
-	color          : '#000000',
-	textDecoration : 'none'
+	return (
+		<BookContextClient>
+			{(value) => {
+				const { books } = value;
+				const { genre } = props;
+				
+				return (
+					<React.Fragment>
+						<div className="container flex-column text-center">
+							<h1 className="display-4 bg-info">{props.genre}</h1>
+							{books.filter(b => {
+								return b.genre === genre;
+							})
+							.map(b => {
+								return (
+									<React.Fragment>
+										<Book bookData={b} key={b.id}/>
+									</React.Fragment>
+								)
+							})
+							}
+						</div>
+					</React.Fragment>
+				);
+			}}
+		</BookContextClient>
+	);
 };
+
+// const linkStyle = {
+
+// 	textDecoration : 'none'
+// };
 
 // Bookshelf.propTypes = {
 //    books: PropTypes.array.isRequired,

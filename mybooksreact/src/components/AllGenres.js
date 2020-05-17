@@ -2,15 +2,13 @@ import React from 'react';
 import Bookshelf from './Bookshelf';
 import { BookContextClient } from '../components/BookState';
 
-const AllGenres = (props) => {
+const AllGenres = () => {
 	return (
 		<BookContextClient>
-			{() => {
-				return (
-					<React.Fragment>
-						<Bookshelf />
-					</React.Fragment>
-				);
+			{({ genres }) => {
+			   return genres.map((g, i) => {
+					return <Bookshelf genre={g} key={i} />;
+				});
 			}}
 		</BookContextClient>
 	);

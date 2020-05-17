@@ -55,7 +55,7 @@ export class BookState extends React.Component {
 		};
     }
 
-    componentDidMount() {
+    // componentDidMount() {
 		// console.log(
 		// 	'%cLOG FROM componentDidMount LIFECYCLE METHOD BLOCK IN APP.JS - LOGGED JSON DATA FROM NYTIMES API',
 		// 	'color:red;font-size:20px;background-color:blue;border:red dotted 4px;padding:4px;margin:15px'
@@ -79,13 +79,13 @@ export class BookState extends React.Component {
 		// 	})
         // });
        
-	}
+	// }
 
     render() {
         return (
-            <BookContext value={this.state}>
+            <BookContext.Provider value={this.state}>
                 {this.props.children}
-            </BookContext>
+            </BookContext.Provider>
         )
     }
 }

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 class IndividualLocation extends React.Component {
     render() {
+      console.log()
         return (
         <Link to="/" style={linkStyle}>
             <div className="jumbotron jumbotron-fluid text-center">
