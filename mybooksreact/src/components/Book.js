@@ -34,20 +34,26 @@ class Book extends React.Component {
 		// console.log(this.props);
 		const { id, title, author, year } = this.props.bookData;
 		const finalCard = (
-			<div className="card text-center border border-dark">
-				<div className="card-header">
-					<h3>{title}</h3>
-				</div>
-				<div className="card-body">
-					<h3>{author}</h3>
-					<h3>{year}</h3>
-					<button className="btn btn-warning btn-sm mx-2">Unread</button>
-					<Link to={{pathname : `/individual-location/${id}`, bookData : this.props.bookData}}>
-						<button className="btn btn-warning btn-sm mx-2">More Info</button>
-					</Link>
-					<button className="btn btn-danger btn-sm mx-2">Delete</button>
-				</div>
-			</div>
+			<BookContextClient>
+				{({ deleteBook }) => {
+					return (
+						<div className="card text-center border border-dark">
+							<div className="card-header">
+								<h3>{title}</h3>
+							</div>
+							<div className="card-body">
+								<h3>{author}</h3>
+								<h3>{year}</h3>
+								<button className="btn btn-warning btn-sm mx-2">Unread</button>
+								<Link to={{ pathname: `/individual-location/${id}`, bookData: this.props.bookData }}>
+									<button className="btn btn-warning btn-sm mx-2">More Info</button>
+								</Link>
+								<button className="btn btn-danger btn-sm mx-2" onClick={deleteBook.bind(this, id)}>Delete</button>
+							</div>
+						</div>
+					);
+				}}
+			</BookContextClient>
 		);
 		// const editCard = (
 		//     <div className="card text-center border border-dark">

@@ -51,9 +51,16 @@ export class BookState extends React.Component {
 					year    : '2018',
 					genre   : 'History'
 				}
-			]
+			],
+			deleteBook: this.deleteBook
 		};
-    }
+	}
+	
+	deleteBook = bookId => {
+		this.setState({
+			books: this.state.books.filter(b => b.id !== bookId)
+		})
+	}
 
     // componentDidMount() {
 		// console.log(
