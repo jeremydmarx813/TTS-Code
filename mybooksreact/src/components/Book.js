@@ -45,7 +45,7 @@ class Book extends React.Component {
 								<h3>{author}</h3>
 								<h3>{year}</h3>
 								<button className="btn btn-warning btn-sm mx-2">Unread</button>
-								<Link to={{ pathname: `/individual-location/${id}`, bookData: this.props.bookData }}>
+								<Link to={{ pathname: `/individual-location/${id}`, state: this.props.bookData }}>
 									<button className="btn btn-warning btn-sm mx-2">More Info</button>
 								</Link>
 								<button className="btn btn-danger btn-sm mx-2" onClick={deleteBook.bind(this, id)}>Delete</button>
