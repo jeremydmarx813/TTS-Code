@@ -39,7 +39,7 @@ const App = (props) => {
 					<div className="App">
 						<Switch>
 							<Route exact path="/" component={HomePage} />
-							<Route path="/individual-location/:book-id" component={IndividualLocation} />
+							<Route path="/individual-location/:id" component={IndividualLocation} />
 						</Switch>
 					</div>
 				</React.Fragment>

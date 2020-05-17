@@ -1,7 +1,7 @@
 import React from 'react';
 import { BookContextClient } from './BookState';
 import Book from './Book.js';
-// import EasterBunny from './locations/EasterBunny';
+
 // import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
@@ -26,10 +26,8 @@ const Bookshelf = (props) => {
 	//       this.updateAndNotify();
 	//     }
 	//   }
-	//////////////////////////////////////////////////////////////////////
-	// delBook = id => {
-	//    this.setState({ books: [...this.state.books].filter(b => b.id !== id)});
-	// }
+
+
 
 	return (
 		<BookContextClient>
