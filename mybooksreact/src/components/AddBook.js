@@ -59,21 +59,6 @@ class AddBook extends React.Component {
 						/>
 					</div>
 				</div>
-				<div className="form-group row text-center">
-					<label htmlFor="year" className="col-sm-2 col-form-label">
-						Year
-					</label>
-					<div className="col-sm-10">
-						<input
-							type="text"
-							className="form-control"
-							name="year"
-							id="year"
-							onChange={this.handleChange}
-							value={this.state.year}
-						/>
-					</div>
-				</div>
 				<fieldset className="form-group text-center" onChange={this.handleChange}>
 					<div className="row">
 						<legend className="col-form-label col-sm-2 pt-0">Genre</legend>

@@ -27,29 +27,23 @@ const Bookshelf = (props) => {
 	//     }
 	//   }
 
-
-
 	return (
 		<BookContextClient>
 			{(value) => {
 				const { books } = value;
 				const { genre } = props;
-				
+
 				return (
 					<React.Fragment>
 						<div className="container flex-column text-center">
 							<h1 className="display-4 bg-info">{props.genre}</h1>
-							{books.filter(b => {
-								return b.genre === genre;
-							})
-							.map(b => {
-								return (
-									<React.Fragment>
-										<Book bookData={b} key={b.id}/>
-									</React.Fragment>
-								)
-							})
-							}
+							{books
+								.filter((b) => {
+									return b.list_name === genre;
+								})
+								.map((b, i) => {
+									return <Book bookData={b} key={i} />;
+								})}
 						</div>
 					</React.Fragment>
 				);

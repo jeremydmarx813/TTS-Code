@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
 const Book = (props) => {
-	const { id, title, author, year, isRead } = props.bookData;
+	const { book_uri, title, author, year, isRead } = props.bookData;
 	return (
 		<BookContextClient>
 			{({ deleteBook, toggleBookIsRead }) => {
@@ -20,22 +20,22 @@ const Book = (props) => {
 							{isRead ? (
 								<button
 									className="btn btn-success btn-sm mx-2"
-									onClick={toggleBookIsRead.bind(this, id)}
+									onClick={toggleBookIsRead.bind(this, book_uri)}
 								>
 									Read
 								</button>
 							) : (
 								<button
 									className="btn btn-warning btn-sm mx-2"
-									onClick={toggleBookIsRead.bind(this, id)}
+									onClick={toggleBookIsRead.bind(this, book_uri)}
 								>
 									Unread
 								</button>
 							)}
-							<Link to={{ pathname: `/individual-location/${id}`, state: props.bookData }}>
+							<Link to={{ pathname: `/individual-location/${book_uri}`, state: props.bookData }}>
 								<button className="btn btn-warning btn-sm mx-2">More Info</button>
 							</Link>
-							<button className="btn btn-danger btn-sm mx-2" onClick={deleteBook.bind(this, id)}>
+							<button className="btn btn-danger btn-sm mx-2" onClick={deleteBook.bind(this, book_uri)}>
 								Delete
 							</button>
 						</div>
