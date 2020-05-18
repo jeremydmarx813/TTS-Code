@@ -119,3 +119,25 @@ DUMMY BOOK DATSA
 					isRead : false
 				}
 			]
+
+  //Code that will have component update if additional props are passed to it
+	//Don't Understand this code from Pluralsight!!!!
+	// componentWillUnmount() {
+	//     if (this.updateTimer) {
+	//       clearTimeout(this.updateTimer);
+	//     }
+	//   }
+
+	//   updateAndNotify = () => {
+	//     if (this.updateTimer) return;
+	//     this.setState({ books: this.props.books });
+	//     this.updateTimer = setTimeout(() => {
+	//       this.updateTimer = null;
+	//     }, 1000);
+	//   }
+
+	//   componentDidUpdate(prevProps) {
+	//     if (prevProps.books.length !== this.props.books.length) {
+	//       this.updateAndNotify();
+	//     }
+	//   }

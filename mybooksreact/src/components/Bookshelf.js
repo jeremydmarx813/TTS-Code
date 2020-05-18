@@ -6,26 +6,7 @@ import Book from './Book.js';
 // import PropTypes from 'prop-types';
 
 const Bookshelf = (props) => {
-	//Don't Understand this code from Pluralsight!!!!
-	// componentWillUnmount() {
-	//     if (this.updateTimer) {
-	//       clearTimeout(this.updateTimer);
-	//     }
-	//   }
 
-	//   updateAndNotify = () => {
-	//     if (this.updateTimer) return;
-	//     this.setState({ books: this.props.books });
-	//     this.updateTimer = setTimeout(() => {
-	//       this.updateTimer = null;
-	//     }, 1000);
-	//   }
-
-	//   componentDidUpdate(prevProps) {
-	//     if (prevProps.books.length !== this.props.books.length) {
-	//       this.updateAndNotify();
-	//     }
-	//   }
 
 	return (
 		<BookContextClient>
@@ -36,7 +17,7 @@ const Bookshelf = (props) => {
 				return (
 					<React.Fragment>
 						<div className="container flex-column text-center">
-							<h1 className="display-4 bg-info">{props.genre}</h1>
+							<h1 className="display-4 bg-info p-3">{props.genre}</h1>
 							{books
 								.filter((b) => {
 									return b.list_name === genre;
