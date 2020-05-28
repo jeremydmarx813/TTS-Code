@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
 import axios from 'axios';
 
 class IndividualLocation extends React.Component {
@@ -30,7 +31,7 @@ class IndividualLocation extends React.Component {
 			<React.Fragment>
 				<div>
 					<Link to="/">
-						<button className="bg-info btn-lg rounded-pill my-3">Back to Home Page</button>
+						<Button className="bg-info btn-lg rounded-pill my-3">Back to Home Page</Button>
 					</Link>
 				</div>
 				<div className="card mb-5">
@@ -47,10 +48,8 @@ class IndividualLocation extends React.Component {
 								<button className="btn bg-warning align-self-center">Buy on Amazon</button>
 							</a>
 							{this.state.reviewLink ? (
-								<a href={this.state.reviewLink}>
-									<button className="btn bg-warning">
-										Read a review from the NYT
-									</button>
+								<a href={this.state.reviewLink} target="_blank">
+									<Button className="btn bg-warning">Read a review from the NYT</Button>
 								</a>
 							) : null}
 						</div>
