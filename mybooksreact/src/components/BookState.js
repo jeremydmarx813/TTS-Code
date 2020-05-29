@@ -13,7 +13,8 @@ export class BookState extends React.Component {
 			deleteBook       : this.deleteBook,
 			toggleBookIsRead : this.toggleBookIsRead,
 			selectedGenre    : '',
-			selectGenreFunc  : this.selectGenreFunc
+			selectGenreFunc  : this.selectGenreFunc,
+			handleSubmit     : this.handleSubmit
 		};
 	}
 
@@ -40,6 +41,10 @@ export class BookState extends React.Component {
 		this.setState({
 			books : this.state.books.filter((b) => b.book_uri !== book_uri)
 		});
+	};
+
+	handleSubmit = (e) => {
+		e.preventDefault();
 	};
 
 	componentDidMount() {

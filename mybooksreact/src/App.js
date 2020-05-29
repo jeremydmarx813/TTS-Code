@@ -8,10 +8,10 @@ import Header from './components/Header';
 
 import HomePage from './components/HomePage';
 import IndividualLocation from './components/locations/IndividualLocation';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import axios from 'axios';
 
-const App = (props) => {
+const App = () => {
 	return (
 		<BookState>
 			<Router>
