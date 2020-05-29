@@ -11,9 +11,17 @@ export class BookState extends React.Component {
 			genres           : [],
 			books            : [],
 			deleteBook       : this.deleteBook,
-			toggleBookIsRead : this.toggleBookIsRead
+			toggleBookIsRead : this.toggleBookIsRead,
+			selectedGenre    : '',
+			selectGenreFunc  : this.selectGenreFunc
 		};
 	}
+
+	selectGenreFunc = (e) => {
+		this.setState({
+			selectedGenre : e.target.value
+		});
+	};
 
 	toggleBookIsRead = (book_uri) => {
 		this.setState({

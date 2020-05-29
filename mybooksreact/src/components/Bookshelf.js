@@ -6,18 +6,15 @@ import Book from './Book.js';
 // import PropTypes from 'prop-types';
 
 const Bookshelf = (props) => {
-
-
 	return (
 		<BookContextClient>
-			{(value) => {
-				const { books } = value;
+			{({ books }) => {
 				const { genre } = props;
 
 				return (
 					<React.Fragment>
 						<div className="container flex-column text-center">
-							<h1 className="display-4 bg-info p-3">{props.genre}</h1>
+							<h1 className="display-4 bg-info p-3">{genre}</h1>
 							{books
 								.filter((b) => {
 									return b.list_name === genre;

@@ -12,25 +12,6 @@ import IndividualLocation from './components/locations/IndividualLocation';
 // import axios from 'axios';
 
 const App = (props) => {
-	// addBook = (obj) => {
-	// 	const newBook = {
-	// 		id      : uuidv4(),
-	// 		title   : obj.title,
-	// 		author  : obj.author,
-	// 		year    : obj.year,
-	// 		genre   : obj.genre,
-	// 		isBunny : false
-	// 	};
-
-	// 	const newBookIsReady = Object.values(newBook).every((val) => val.length !== 0);
-
-	// 	if (newBookIsReady) {
-	// 		this.setState({ books: [ ...this.state.books, newBook ] });
-	// 	} else {
-	// 		console.log('not enough info for book');
-	// 	}
-	// };
-
 	return (
 		<BookState>
 			<Router>

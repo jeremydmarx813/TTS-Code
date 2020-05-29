@@ -4,7 +4,7 @@ import { BookContextClient } from './BookState';
 const AddBook = (props) => {
 	return (
 		<BookContextClient>
-			{({ genres }) => (
+			{({ genres, selectedGenre, selectGenreFunc }) => (
 				<form action="#" className="d-flex flex-column align-items-center">
 					<div className="form-group row text-center">
 						<label htmlFor="title" className="col-sm-2 col-form-label">
@@ -22,8 +22,15 @@ const AddBook = (props) => {
 						</div>
 					</div>
 					<div className="form-group row text-center">
-						<select className="custom-select mr-sm-2" id="inlineFormCustomSelect">
-							<option defaultValue>Search via genre...</option>
+						<select
+							value={selectedGenre}
+							onChange={selectGenreFunc}
+							className="custom-select mr-sm-2"
+							id="inlineFormCustomSelect"
+						>
+							<option  value={''}>
+								Search via genre...
+							</option>
 							{genres.map((g, i) => {
 								return (
 									<React.Fragment key={i}>

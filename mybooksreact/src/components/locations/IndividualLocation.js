@@ -27,6 +27,7 @@ class IndividualLocation extends React.Component {
 	}
 
 	render() {
+		const { book_image, title, author, publisher, description, reviewLink } = this.state;
 		return (
 			<React.Fragment>
 				<div>
@@ -36,19 +37,19 @@ class IndividualLocation extends React.Component {
 				</div>
 				<div className="card mb-5">
 					<div className="container">
-						<img src={this.state.book_image} className="card-img-top" />
-						<h1 className="display-4 card-title text-center">{this.state.title}</h1>
-						<h3 className="card-text text-center">{this.state.author}</h3>
+						<img src={book_image} className="card-img-top" />
+						<h1 className="display-4 card-title text-center">{title}</h1>
+						<h3 className="card-text text-center">{author}</h3>
 						<h4 className="display-5 text-center">
-							<span>Publisher:</span> {this.state.publisher}
+							<span>Publisher:</span> {publisher}
 						</h4>
-						<p className="card-text">{this.state.description}</p>
+						<p className="card-text">{description}</p>
 						<div className="d-flex flex-row justify-content-around">
 							<a href="https://www.amazon.com/dp/0385545932?tag=NYTBSREV-20?tag=NYTBS-20" target="_blank">
 								<button className="btn bg-warning align-self-center">Buy on Amazon</button>
 							</a>
-							{this.state.reviewLink ? (
-								<a href={this.state.reviewLink} target="_blank">
+							{reviewLink ? (
+								<a href={reviewLink} target="_blank">
 									<Button className="btn bg-warning">Read a review from the NYT</Button>
 								</a>
 							) : null}
