@@ -8,13 +8,12 @@ export class BookState extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			genres           : [],
-			books            : [],
-			deleteBook       : this.deleteBook,
-			toggleBookIsRead : this.toggleBookIsRead,
-			selectedGenre    : '',
-			selectGenreFunc  : this.selectGenreFunc,
-			handleSubmit     : this.handleSubmit
+			genres            : [],
+			books             : [],
+			deleteBook        : this.deleteBook,
+			toggleBookIsSaved : this.toggleBookIsSaved,
+			selectedGenre     : '',
+			selectGenreFunc   : this.selectGenreFunc
 		};
 	}
 
@@ -24,11 +23,11 @@ export class BookState extends React.Component {
 		});
 	};
 
-	toggleBookIsRead = (book_uri) => {
+	toggleBookIsSaved = (book_uri) => {
 		this.setState({
 			books : [ ...this.state.books ].map((b) => {
 				if (b.book_uri === book_uri) {
-					b.isRead = !b.isRead;
+					b.isSaved = !b.isSaved;
 					return b;
 				} else {
 					return b;
@@ -41,10 +40,6 @@ export class BookState extends React.Component {
 		this.setState({
 			books : this.state.books.filter((b) => b.book_uri !== book_uri)
 		});
-	};
-
-	handleSubmit = (e) => {
-		e.preventDefault();
 	};
 
 	componentDidMount() {

@@ -5,7 +5,7 @@ import { BookState } from './components/BookState';
 // import AllGenres from './components/AllGenres';
 // import Bookshelf from './components/Bookshelf';
 import Header from './components/Header';
-
+import SavedBooks from './components/locations/SavedBooks';
 import HomePage from './components/HomePage';
 import IndividualLocation from './components/locations/IndividualLocation';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -21,6 +21,7 @@ const App = () => {
 						<Switch>
 							<Route exact path="/" component={HomePage} />
 							<Route path="/individual-location/:id" component={IndividualLocation} />
+							<Route path="/saved-books" component={SavedBooks}/>
 						</Switch>
 					</div>
 				</React.Fragment>

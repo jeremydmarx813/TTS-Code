@@ -1,12 +1,12 @@
 import React from 'react';
 import { BookContextClient } from './BookState';
-import { Button, Form, FormGroup, Input } from 'reactstrap';
+import { Button, Form, FormGroup } from 'reactstrap';
 
 const AddBook = (props) => {
 	return (
 		<BookContextClient>
-			{({ genres, selectedGenre, selectGenreFunc, handleSubmit }) => (
-				<Form onSubmit={handleSubmit} className="d-flex flex-column align-items-center">
+			{({ genres, selectedGenre, selectGenreFunc }) => (
+				<Form className="d-flex flex-column align-items-center">
 					<FormGroup className="text-center">
 						<select
 							value={selectedGenre}
@@ -23,13 +23,6 @@ const AddBook = (props) => {
 								);
 							})}
 						</select>
-					</FormGroup>
-					<FormGroup className="row">
-						<div className="col-sm-10">
-							<Button type="submit" className="btn btn-primary">
-								Search!
-							</Button>
-						</div>
 					</FormGroup>
 				</Form>
 			)}

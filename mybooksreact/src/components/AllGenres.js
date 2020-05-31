@@ -7,12 +7,12 @@ const AllGenres = () => {
 		<BookContextClient>
 			{({ genres, selectedGenre }) => {
 				if (genres.length) {
-					{
-						!selectedGenre.length ? (
-							genres.map((g, i) => {
-								return <Bookshelf genre={g} key={i} />;
-							})
-						) : (
+					if (!selectedGenre.length) {
+						return genres.map((g, i) => {
+							return <Bookshelf genre={g} key={i} />;
+						});
+					} else {
+						return (
 							<React.Fragment>
 								<Bookshelf genre={selectedGenre} />
 							</React.Fragment>
@@ -21,7 +21,10 @@ const AllGenres = () => {
 				} else {
 					return (
 						<React.Fragment>
-							<img src="https://media.giphy.com/media/y1ZBcOGOOtlpC/giphy.gif" />
+							<img
+								src="https://media.giphy.com/media/y1ZBcOGOOtlpC/giphy.gif"
+								style={{ textAlign: 'center' }}
+							/>
 						</React.Fragment>
 					);
 				}

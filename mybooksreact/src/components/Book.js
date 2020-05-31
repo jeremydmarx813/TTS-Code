@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
 const Book = (props) => {
-	const { book_uri, title, author, year, isRead } = props.bookData;
+	const { book_uri, title, author, year, isSaved } = props.bookData;
 	return (
 		<BookContextClient>
-			{({ deleteBook, toggleBookIsRead }) => {
+			{({ deleteBook, toggleBookIsSaved }) => {
 				return (
 					<div className="card text-center border border-dark">
 						<div className="card-header">
@@ -17,19 +17,19 @@ const Book = (props) => {
 						<div className="card-body">
 							<h3>{author}</h3>
 							<h3>{year}</h3>
-							{isRead ? (
+							{isSaved ? (
 								<button
 									className="btn btn-success btn-sm mx-2"
-									onClick={toggleBookIsRead.bind(this, book_uri)}
+									onClick={toggleBookIsSaved.bind(this, book_uri)}
 								>
-									Read
+									Saved
 								</button>
 							) : (
 								<button
 									className="btn btn-warning btn-sm mx-2"
-									onClick={toggleBookIsRead.bind(this, book_uri)}
+									onClick={toggleBookIsSaved.bind(this, book_uri)}
 								>
-									Unread
+									Unsaved
 								</button>
 							)}
 							<Link to={{ pathname: `/individual-location/${book_uri}`, state: props.bookData }}>
