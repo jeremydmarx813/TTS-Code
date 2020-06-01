@@ -60,6 +60,7 @@ export class BookState extends React.Component {
 						.reduce((s, e) => {
 							let funcBooks = e.books.map((b) => {
 								b.list_name = e.list_name;
+								b.isSaved = false;
 								return b;
 							});
 							s.push(funcBooks);
