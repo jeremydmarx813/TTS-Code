@@ -1,6 +1,6 @@
 import React from 'react';
 import Bookshelf from './Bookshelf';
-import { BookContextClient } from '../components/BookState';
+import { BookContextClient } from './BookState';
 
 const AllGenres = () => {
 	return (
