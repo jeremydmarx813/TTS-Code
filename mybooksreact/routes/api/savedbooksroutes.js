@@ -8,8 +8,8 @@ const SavedBook = require('../../models/SavedBooks');
 //??@access Public
 
 router.get('/', (req, res) => {
-	const testBody = { test: 'response worked' };
-	res.send(res.json(testBody));
+	
+	SavedBooks.find().then(books => res.json(books));
 });
 
 //??@route POST api/savedbookroutes
@@ -25,9 +25,9 @@ router.post('/', (req, res) => {
 		description        : req.body.description,
 		list_name          : req.body.list_name,
 		publisher          : req.body.publisher,
-		primary_isbn10     : req.body.primary_isbn10,
-		title              : req.body.title
-	});
+		primary_isbn10     : req.body.primary_isbn10 
+    });
+    newSavedBook.save().then(b => res.json(b)).catch(err => res.status(500).send())
 });
 
 module.exports = router;
