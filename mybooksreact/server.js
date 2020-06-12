@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -6,7 +7,8 @@ const mongoose = require('mongoose');
 const savedbooksroutes = require('./routes/api/savedbooksroutes');
 
 const app = express();
-
+//!!uses cross origin midd ware
+app.use(cors()); 
 //!!uses body parser middleware
 app.use(bodyParser.json());
 
