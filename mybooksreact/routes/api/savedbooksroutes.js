@@ -8,8 +8,7 @@ const SavedBook = require('../../models/SavedBooks');
 //??@access Public
 
 router.get('/', (req, res) => {
-	
-	SavedBooks.find().then(books => res.json(books));
+	SavedBooks.find().then((books) => res.json(books));
 });
 
 //??@route POST api/savedbookroutes
@@ -25,9 +24,19 @@ router.post('/', (req, res) => {
 		description        : req.body.description,
 		list_name          : req.body.list_name,
 		publisher          : req.body.publisher,
-		primary_isbn10     : req.body.primary_isbn10 
-    });
-    newSavedBook.save().then(b => res.json(b)).catch(err => res.status(500).send())
+		primary_isbn10     : req.body.primary_isbn10
+	});
+	newSavedBook.save().then((b) => res.json(b)).catch((err) => res.status(500).send());
+});
+
+//??@route DELETE api/savedbookroutes
+//??@desc deletes a book to database by ID
+//??@access Public
+
+router.delete('/:id', (req, res) => {
+	SavedBooks.findById(req.params.id)
+		.then((book) => book.remove().then(() => res.json({ success: true })))
+		.catch((err) => res.status(404).json({ success: false }));
 });
 
 module.exports = router;
