@@ -9,7 +9,7 @@ const SavedBooks = () => {
 			{({ books }) => {
 				const testGetBooks = axios
 					.get('http://localhost:4000/api/savedbooks')
-					.then((res) => console.log(res))
+					.then((res) => res.data)
 					.catch((err) => console.log(err));
 				const namesArr = [];
 				const reducedBooks = books.reduce((s, e) => {
@@ -22,19 +22,26 @@ const SavedBooks = () => {
 					}
 				}, []);
 				return (
-					<React.Fragment>
-						<div className="container flex-column text-center">
-							<h1 className="display-4 bg-info p-3">{'Saved Books'}</h1>
-							{reducedBooks
-								.filter((b) => {
-									return b.isSaved;
-								})
-								.map((b, i) => {
-									return <Book bookData={b} key={i} />;
-								})}
-						</div>
-						<div>{console.log(testGetBooks)}</div>
-					</React.Fragment>
+					<div className="container flex-column text-center">
+						<h1 className="display-4 bg-info p-3">{'Saved Books'}</h1>
+						<React.Fragment>
+							{() => {
+								return testGetBooks
+									.then((arr) => {
+										return arr.map((b, i) => {
+											return <Book bookData={b} key={i} />;
+										});
+									})
+									.catch((err) => console.log(err));
+								// .filter((b) => {
+								// 	return b.isSaved;
+								// })
+								// .map((b, i) => {
+								// 	return <Book bookData={b} key={i} />;
+								// })
+							}}
+						</React.Fragment>
+					</div>
 				);
 			}}
 		</BookContextClient>
