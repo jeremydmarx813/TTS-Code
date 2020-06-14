@@ -41,6 +41,10 @@ const SavedBookSchema = new Schema({
 	title              : {
 		type     : String,
 		required : true
+	},
+	isSaved            : {
+		type     : String,
+		required : true
 	}
 });
 

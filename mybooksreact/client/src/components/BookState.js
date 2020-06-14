@@ -8,13 +8,15 @@ export class BookState extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			genres            : [],
-			books             : [],
-			savedBooks        : [],
-			deleteBook        : this.deleteBook,
-			toggleBookIsSaved : this.toggleBookIsSaved,
-			selectedGenre     : '',
-			selectGenreFunc   : this.selectGenreFunc
+			genres              : [],
+			books               : [],
+			savedBooks          : [],
+			deleteBook          : this.deleteBook,
+			toggleBookIsSaved   : this.toggleBookIsSaved,
+			selectedGenre       : '',
+			selectGenreFunc     : this.selectGenreFunc,
+			postBookToMongo     : this.postBookToMongo,
+			deleteBookFromMongo : this.deleteBookFromMongo
 		};
 	}
 
@@ -37,9 +39,33 @@ export class BookState extends React.Component {
 		});
 	};
 
-	// testGetBooks = async () => {
-	// 	return await
-	// };
+	postBookToMongo = (bData) => {
+		this.toggleBookIsSaved(bData.book_uri);
+
+		axios
+			.post('http://localhost:4000/api/savedbooks', {
+				amazon_product_url : bData.amazon_product_url,
+				author             : bData.author,
+				book_image         : bData.book_image,
+				title              : bData.title,
+				book_uri           : bData.book_uri,
+				description        : bData.description,
+				list_name          : bData.list_name,
+				publisher          : bData.publisher,
+				primary_isbn10     : bData.primary_isbn10,
+				isSaved            : bData.isSaved
+			})
+			.then((res) => console.log(res))
+			.catch((err) => console.log(err));
+	};
+
+	deleteBookFromMongo = (bId, uri) => {
+		this.toggleBookIsSaved(uri);
+		axios
+			.delete(`http://localhost:4000/api/savedbooks/${bId}`)
+			.then((res) => console.log(res))
+			.catch((err) => console.log(err));
+	};
 
 	deleteBook = (book_uri) => {
 		this.setState({
@@ -79,7 +105,6 @@ export class BookState extends React.Component {
 		axios
 			.get('http://localhost:4000/api/savedbooks')
 			.then((res) => {
-				console.log(res);
 				this.setState({
 					savedBooks : res.data
 				});

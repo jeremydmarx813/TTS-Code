@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
 const Book = (props) => {
-	const { book_uri, title, author, year, isSaved } = props.bookData;
+	const { book_uri, title, author, year, isSaved, _id } = props.bookData;
 	return (
 		<BookContextClient>
-			{({ deleteBook, toggleBookIsSaved }) => {
+			{({ deleteBook, toggleBookIsSaved, postBookToMongo, deleteBookFromMongo }) => {
 				return (
 					<div className="card text-center border border-dark">
 						<div className="card-header">
@@ -20,14 +20,14 @@ const Book = (props) => {
 							{isSaved ? (
 								<button
 									className="btn btn-success btn-sm mx-2"
-									onClick={toggleBookIsSaved.bind(this, book_uri)}
+									onClick={deleteBookFromMongo.bind(this, _id, book_uri)}
 								>
 									Saved
 								</button>
 							) : (
 								<button
 									className="btn btn-warning btn-sm mx-2"
-									onClick={toggleBookIsSaved.bind(this, book_uri)}
+									onClick={postBookToMongo.bind(this, props.bookData)}
 								>
 									Unsaved
 								</button>

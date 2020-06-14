@@ -24,7 +24,8 @@ router.post('/', (req, res) => {
 		description        : req.body.description,
 		list_name          : req.body.list_name,
 		publisher          : req.body.publisher,
-		primary_isbn10     : req.body.primary_isbn10
+		primary_isbn10     : req.body.primary_isbn10,
+		isSaved            : req.body.isSaved
 	});
 	newSavedBook.save().then((b) => res.json(b)).catch((err) => res.status(500).send());
 });
