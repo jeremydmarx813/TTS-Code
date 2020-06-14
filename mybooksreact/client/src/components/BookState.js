@@ -10,6 +10,7 @@ export class BookState extends React.Component {
 		this.state = {
 			genres            : [],
 			books             : [],
+			savedBooks        : [],
 			deleteBook        : this.deleteBook,
 			toggleBookIsSaved : this.toggleBookIsSaved,
 			selectedGenre     : '',
@@ -35,6 +36,10 @@ export class BookState extends React.Component {
 			})
 		});
 	};
+
+	// testGetBooks = async () => {
+	// 	return await
+	// };
 
 	deleteBook = (book_uri) => {
 		this.setState({
@@ -67,6 +72,16 @@ export class BookState extends React.Component {
 							return s;
 						}, [])
 						.flat()
+				});
+			})
+			.catch((err) => console.log(err));
+
+		axios
+			.get('http://localhost:4000/api/savedbooks')
+			.then((res) => {
+				console.log(res);
+				this.setState({
+					savedBooks : res.data
 				});
 			})
 			.catch((err) => console.log(err));
