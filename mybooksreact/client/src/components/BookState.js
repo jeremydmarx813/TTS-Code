@@ -74,42 +74,51 @@ export class BookState extends React.Component {
 	};
 
 	componentDidMount() {
-		axios
-			.get(
-				`https://cors-anywhere.herokuapp.com/https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key=M08voLv6ftzAuwJWsHIGS7n6gAl0dJZx`
-			)
-			.then((res) => {
-				// console.log(res.data.results.lists);
-				this.setState({
-					genres : res.data.results.lists.reduce((s, e) => {
-						if (!this.state.genres.includes(e.list_name)) {
-							s.push(e.list_name);
-						}
-						return s;
-					}, []),
-					books  : res.data.results.lists
-						.reduce((s, e) => {
-							let funcBooks = e.books.map((b) => {
-								b.list_name = e.list_name;
-								b.isSaved = false;
-								return b;
-							});
-							s.push(funcBooks);
-							return s;
-						}, [])
-						.flat()
-				});
-			})
-			.catch((err) => console.log(err));
+		const getSavedBooks = () => {
+			axios
+				.get('http://localhost:4000/api/savedbooks')
+				.then((res) => {
+					this.setState({
+						savedBooks : res.data
+					});
+				})
+				.catch((err) => console.log(err));
+		};
 
-		axios
-			.get('http://localhost:4000/api/savedbooks')
-			.then((res) => {
-				this.setState({
-					savedBooks : res.data
-				});
-			})
-			.catch((err) => console.log(err));
+		const getNYTBooks = () => {
+			axios
+				.get(
+					`https://cors-anywhere.herokuapp.com/https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key=M08voLv6ftzAuwJWsHIGS7n6gAl0dJZx`
+				)
+				.then((res) => {
+					// console.log(res.data.results.lists);
+					this.setState({
+						genres : res.data.results.lists.reduce((s, e) => {
+							if (!this.state.genres.includes(e.list_name)) {
+								s.push(e.list_name);
+							}
+							return s;
+						}, []),
+						books  : res.data.results.lists
+							.reduce((s, e) => {
+								let funcBooks = e.books.map((b) => {
+									if (this.state.savedBooks.find((savedBook) => savedBook.book_uri === b.book_uri)) {
+										b.isSaved = true;
+									}
+
+									b.isSaved = false;
+									b.list_name = e.list_name;
+									return b;
+								});
+								s.push(funcBooks);
+								return s;
+							}, [])
+							.flat()
+					});
+				})
+				.catch((err) => console.log(err));
+		};
+		Promise.all([getSavedBooks, getNYTBooks]).catch(err => console.log(err));
 	}
 
 	render() {
