@@ -1,32 +1,27 @@
-import React from 'react';
+import React, { useReducer } from 'react';
+import BookReducer from './BookReducer';
 // import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
-const BookContext = React.createContext();
+const appState = {
+	genres        : [],
+	books         : [],
+	savedBooks    : [],
+	selectedGenre : ''
+};
 
-export class BookState extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			genres              : [],
-			books               : [],
-			savedBooks          : [],
-			deleteBook          : this.deleteBook,
-			toggleBookIsSaved   : this.toggleBookIsSaved,
-			selectedGenre       : '',
-			selectGenreFunc     : this.selectGenreFunc,
-			postBookToMongo     : this.postBookToMongo,
-			deleteBookFromMongo : this.deleteBookFromMongo
-		};
-	}
+export const BookContext = React.createContext(appState);
 
-	selectGenreFunc = (e) => {
+export const BookProvider = ({ children }) => {
+	const [ state, dispatch ] = useReducer(BookReducer, appState);
+
+	const selectGenreFunc = (e) => {
 		this.setState({
 			selectedGenre : e.target.value
 		});
 	};
 
-	toggleBookIsSaved = (book_uri) => {
+	const toggleBookIsSaved = (book_uri) => {
 		this.setState({
 			books : [ ...this.state.books ].map((b) => {
 				if (b.book_uri === book_uri) {
@@ -39,7 +34,7 @@ export class BookState extends React.Component {
 		});
 	};
 
-	postBookToMongo = (bData) => {
+	const postBookToMongo = (bData) => {
 		this.toggleBookIsSaved(bData.book_uri);
 
 		axios
@@ -59,7 +54,7 @@ export class BookState extends React.Component {
 			.catch((err) => console.log(err));
 	};
 
-	deleteBookFromMongo = (bId, uri) => {
+	const deleteBookFromMongo = (bId, uri) => {
 		this.toggleBookIsSaved(uri);
 		axios
 			.delete(`http://localhost:4000/api/savedbooks/${bId}`)
@@ -67,63 +62,77 @@ export class BookState extends React.Component {
 			.catch((err) => console.log(err));
 	};
 
-	deleteBook = (book_uri) => {
+	const deleteBook = (book_uri) => {
 		this.setState({
 			books : this.state.books.filter((b) => b.book_uri !== book_uri)
 		});
 	};
 
-	componentDidMount() {
-		const getSavedBooks = () => {
-			axios
-				.get('http://localhost:4000/api/savedbooks')
-				.then((res) => {
-					this.setState({
-						savedBooks : res.data
-					});
-				})
-				.catch((err) => console.log(err));
-		};
+	// componentDidMount() {
+	// 	const getSavedBooks = () => {
+	// 		axios
+	// 			.get('http://localhost:4000/api/savedbooks')
+	// 			.then((res) => {
+	// 				this.setState({
+	// 					savedBooks : res.data
+	// 				});
+	// 			})
+	// 			.catch((err) => console.log(err));
+	// 	};
 
-		const getNYTBooks = () => {
-			axios
-				.get(
-					`https://cors-anywhere.herokuapp.com/https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key=M08voLv6ftzAuwJWsHIGS7n6gAl0dJZx`
-				)
-				.then((res) => {
-					// console.log(res.data.results.lists);
-					this.setState({
-						genres : res.data.results.lists.reduce((s, e) => {
-							if (!this.state.genres.includes(e.list_name)) {
-								s.push(e.list_name);
-							}
-							return s;
-						}, []),
-						books  : res.data.results.lists
-							.reduce((s, e) => {
-								let funcBooks = e.books.map((b) => {
-									if (this.state.savedBooks.find((savedBook) => savedBook.book_uri === b.book_uri)) {
-										b.isSaved = true;
-									}
+	// 	const getNYTBooks = () => {
+	// 		axios
+	// 			.get(
+	// 				`https://cors-anywhere.herokuapp.com/https://api.nytimes.com/svc/books/v3/lists/overview.json?api-key=M08voLv6ftzAuwJWsHIGS7n6gAl0dJZx`
+	// 			)
+	// 			.then((res) => {
+	// 				// console.log(res.data.results.lists);
+	// 				this.setState({
+	// 					genres : res.data.results.lists.reduce((s, e) => {
+	// 						if (!this.state.genres.includes(e.list_name)) {
+	// 							s.push(e.list_name);
+	// 						}
+	// 						return s;
+	// 					}, []),
+	// 					books  : res.data.results.lists
+	// 						.reduce((s, e) => {
+	// 							let funcBooks = e.books.map((b) => {
+	// 								if (this.state.savedBooks.find((savedBook) => savedBook.book_uri === b.book_uri)) {
+	// 									b.isSaved = true;
+	// 								}
 
-									b.isSaved = false;
-									b.list_name = e.list_name;
-									return b;
-								});
-								s.push(funcBooks);
-								return s;
-							}, [])
-							.flat()
-					});
-				})
-				.catch((err) => console.log(err));
-		};
-		Promise.all([getSavedBooks, getNYTBooks]).catch(err => console.log(err));
-	}
+	// 								b.isSaved = false;
+	// 								b.list_name = e.list_name;
+	// 								return b;
+	// 							});
+	// 							s.push(funcBooks);
+	// 							return s;
+	// 						}, [])
+	// 						.flat()
+	// 				});
+	// 			})
+	// 			.catch((err) => console.log(err));
+	// 	};
+	// 	Promise.all([ getSavedBooks, getNYTBooks ]).catch((err) => console.log(err));
+	// }
 
-	render() {
-		return <BookContext.Provider value={this.state}>{this.props.children}</BookContext.Provider>;
-	}
-}
+	return (
+		<BookContext.Provider
+			value={{
+				genres              : state.genres,
+				books               : state.books,
+				savedBooks          : state.savedBooks,
+				selectedGenre       : state.selectedGenre,
+				selectGenreFunc,
+				toggleBookIsSaved,
+				postBookToMongo,
+				deleteBookFromMongo,
+				deleteBook
+			}}
+		>
+			{children}
+		</BookContext.Provider>
+	);
+};
 
 export const BookContextClient = BookContext.Consumer;

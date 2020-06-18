@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import { BookState } from './components/BookState';
+import { BookProvider } from './components/BookState';
 // import AllGenres from './components/AllGenres';
 // import Bookshelf from './components/Bookshelf';
 import Header from './components/Header';
@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
 	return (
-		<BookState>
+		<BookProvider>
 			<Router>
 				<React.Fragment>
 					<Header />
@@ -26,7 +26,7 @@ const App = () => {
 					</div>
 				</React.Fragment>
 			</Router>
-		</BookState>
+		</BookProvider>
 	);
 };
 
