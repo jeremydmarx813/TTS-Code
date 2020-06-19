@@ -49,34 +49,6 @@ export const BookProvider = ({ children }) => {
 				payload : err 
 			});
 		}
-
-		// .then((res) => {
-		// 	// console.log(res.data.results.lists);
-		// 	this.setState({
-		// 		genres : res.data.results.lists.reduce((s, e) => {
-		// 			if (!this.state.genres.includes(e.list_name)) {
-		// 				s.push(e.list_name);
-		// 			}
-		// 			return s;
-		// 		}, []),
-		// 		books  : res.data.results.lists
-		// 			.reduce((s, e) => {
-		// 				let funcBooks = e.books.map((b) => {
-		// 					if (this.state.savedBooks.find((savedBook) => savedBook.book_uri === b.book_uri)) {
-		// 						b.isSaved = true;
-		// 					}
-
-		// 					b.isSaved = false;
-		// 					b.list_name = e.list_name;
-		// 					return b;
-		// 				});
-		// 				s.push(funcBooks);
-		// 				return s;
-		// 			}, [])
-		// 			.flat()
-		// 	});
-		// })
-		// .catch((err) => console.log(err));
 	};
 
 	const postBookToMongo = async (bData) => {
@@ -107,6 +79,17 @@ export const BookProvider = ({ children }) => {
 	};
 
 	const deleteBook = (book_uri) => {
+		try {
+			dispatch({
+				type: 'DELETE_NYT_BOOK_FROM_STATE',
+				payload: book_uri
+			})
+		} catch (err) {
+			dispatch({
+				type    : 'TRANSACTION_ERROR',
+				payload : err 
+			});
+		}
 		// this.setState({
 		// 	books : this.state.books.filter((b) => b.book_uri !== book_uri)
 		// });

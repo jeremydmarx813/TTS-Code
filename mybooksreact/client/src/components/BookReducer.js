@@ -2,7 +2,6 @@ export default (state, action) => {
 	switch (action.type) {
 		case 'GET_NYT_BOOKS':
 			const testGenreArr = [];
-
 			return {
 				...state,
 				genres : action.payload.data.results.lists.reduce((s, e) => {
@@ -26,7 +25,12 @@ export default (state, action) => {
 						return s;
 					}, [])
 					.flat()
-			};
+            };
+        case 'DELETE_NYT_BOOK_FROM_STATE':
+            return {
+                ...state,
+                books: state.books.filter((b) => b.book_uri !== action.payload)
+            }
 		case 'TRANSACTION_ERROR':
 			return {
 				...state,
