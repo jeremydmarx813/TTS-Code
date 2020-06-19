@@ -15,16 +15,14 @@ const App = () => {
 	return (
 		<BookProvider>
 			<Router>
-				<React.Fragment>
-					<Header />
-					<div className="App">
-						<Switch>
-							<Route exact path="/" component={HomePage} />
-							<Route path="/individual-location/:id" component={IndividualLocation} />
-							<Route path="/saved-books" component={SavedBooks}/>
-						</Switch>
-					</div>
-				</React.Fragment>
+				<Header />
+				<div className="App">
+					<Switch>
+						<Route exact path="/" component={HomePage} />
+						<Route path="/individual-location/:id" component={IndividualLocation} />
+						<Route path="/saved-books" component={SavedBooks} />
+					</Switch>
+				</div>
 			</Router>
 		</BookProvider>
 	);

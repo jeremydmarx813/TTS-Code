@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { createContext, useReducer } from 'react';
 import BookReducer from './BookReducer';
 // import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
@@ -10,7 +10,7 @@ const appState = {
 	selectedGenre : ''
 };
 
-export const BookContext = React.createContext(appState);
+export const BookContext = createContext(appState);
 
 export const BookProvider = ({ children }) => {
 	const [ state, dispatch ] = useReducer(BookReducer, appState);
@@ -41,12 +41,12 @@ export const BookProvider = ({ children }) => {
 			);
 			dispatch({
 				type    : 'GET_NYT_BOOKS',
-				payload : nytBooks.data.results.lists
+				payload : nytBooks
 			});
 		} catch (err) {
 			dispatch({
 				type    : 'TRANSACTION_ERROR',
-				payload : err.response.data.error
+				payload : err 
 			});
 		}
 
@@ -150,4 +150,4 @@ export const BookProvider = ({ children }) => {
 	);
 };
 
-export const BookContextClient = BookContext.Consumer;
+// export const BookContextClient = BookContext.Consumer;
