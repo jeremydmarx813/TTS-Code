@@ -19,7 +19,6 @@ export default (state, action) => {
 					.reduce((s, e) => {
 						let funcBooks = e.books.map((b) => {
 							if (state.savedBooks.find((savedBook) => savedBook.title === b.title)) {
-								console.log('reached block');
 								b.isSaved = true;
 							} else {
 								b.isSaved = false;
@@ -37,7 +36,7 @@ export default (state, action) => {
 			return {
 				...state,
 				books : state.books.map((b) => {
-					if (b.book_uri === action.payload) {
+					if (b.book_title === action.payload) {
 						b.isSaved = !b.isSaved;
 						return b;
 					} else {

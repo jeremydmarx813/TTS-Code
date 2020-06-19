@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 
 const Book = (props) => {
-	const { deleteBook, toggleBookIsSaved, postBookToMongo, deleteBookFromMongo } = useContext(BookContext);
+	const { deleteBook, postBookToMongo, deleteBookFromMongo } = useContext(BookContext);
 	const { book_uri, title, author, year, isSaved, _id } = props.bookData;
 	return (
 		<div className="card text-center border border-dark">

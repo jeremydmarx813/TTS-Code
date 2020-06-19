@@ -53,15 +53,15 @@ export const BookProvider = ({ children }) => {
 		}
 	};
 
-	const toggleBookIsSaved = (book_uri) => {
+	const toggleBookIsSaved = (book_title) => {
 		dispatch({
 			type    : 'TOGGLE_BOOK_SAVED',
-			payload : book_uri
+			payload : book_title
 		});
 	};
 
 	const postBookToMongo = async (bData) => {
-		toggleBookIsSaved(bData.book_uri);
+		toggleBookIsSaved(bData.book_title);
 		axios
 			.post('http://localhost:4000/api/savedbooks', {
 				amazon_product_url : bData.amazon_product_url,
