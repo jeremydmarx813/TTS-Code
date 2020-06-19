@@ -3,8 +3,9 @@ import { BookContext } from './BookState';
 import { Form, FormGroup } from 'reactstrap';
 // , selectedGenre, selectGenreFunc
 const AddBook = () => {
-	const { genres, getNYTBooks } = useContext(BookContext);
+	const { genres, getNYTBooks, getMongoBooks } = useContext(BookContext);
 	useEffect(() => {
+		getMongoBooks();
 		getNYTBooks();
 	}, []);
 	return (

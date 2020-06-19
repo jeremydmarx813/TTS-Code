@@ -21,19 +21,6 @@ export const BookProvider = ({ children }) => {
 		// });
 	};
 
-	const toggleBookIsSaved = (book_uri) => {
-		// this.setState({
-		// 	books : [ ...this.state.books ].map((b) => {
-		// 		if (b.book_uri === book_uri) {
-		// 			b.isSaved = !b.isSaved;
-		// 			return b;
-		// 		} else {
-		// 			return b;
-		// 		}
-		// 	})
-		// });
-	};
-
 	const getNYTBooks = async () => {
 		try {
 			const nytBooks = await axios.get(
@@ -46,28 +33,50 @@ export const BookProvider = ({ children }) => {
 		} catch (err) {
 			dispatch({
 				type    : 'TRANSACTION_ERROR',
-				payload : err 
+				payload : err
 			});
 		}
 	};
 
+	const getMongoBooks = async () => {
+		try {
+			const mongoBooks = await axios.get('http://localhost:4000/api/savedbooks');
+			dispatch({
+				type    : 'GET_MONGO_BOOKS',
+				payload : mongoBooks
+			});
+		} catch (err) {
+			dispatch({
+				type    : 'TRANSACTION_ERROR',
+				payload : err
+			});
+		}
+	};
+
+	const toggleBookIsSaved = (book_uri) => {
+		dispatch({
+			type    : 'TOGGLE_BOOK_SAVED',
+			payload : book_uri
+		});
+	};
+
 	const postBookToMongo = async (bData) => {
-		// this.toggleBookIsSaved(bData.book_uri);
-		// axios
-		// 	.post('http://localhost:4000/api/savedbooks', {
-		// 		amazon_product_url : bData.amazon_product_url,
-		// 		author             : bData.author,
-		// 		book_image         : bData.book_image,
-		// 		title              : bData.title,
-		// 		book_uri           : bData.book_uri,
-		// 		description        : bData.description,
-		// 		list_name          : bData.list_name,
-		// 		publisher          : bData.publisher,
-		// 		primary_isbn10     : bData.primary_isbn10,
-		// 		isSaved            : bData.isSaved
-		// 	})
-		// 	.then((res) => console.log(res))
-		// 	.catch((err) => console.log(err));
+		toggleBookIsSaved(bData.book_uri);
+		axios
+			.post('http://localhost:4000/api/savedbooks', {
+				amazon_product_url : bData.amazon_product_url,
+				author             : bData.author,
+				book_image         : bData.book_image,
+				title              : bData.title,
+				book_uri           : bData.book_uri,
+				description        : bData.description,
+				list_name          : bData.list_name,
+				publisher          : bData.publisher,
+				primary_isbn10     : bData.primary_isbn10,
+				isSaved            : bData.isSaved
+			})
+			.then((res) => console.log(res))
+			.catch((err) => console.log(err));
 	};
 
 	const deleteBookFromMongo = async (bId, uri) => {
@@ -81,13 +90,13 @@ export const BookProvider = ({ children }) => {
 	const deleteBook = (book_uri) => {
 		try {
 			dispatch({
-				type: 'DELETE_NYT_BOOK_FROM_STATE',
-				payload: book_uri
-			})
+				type    : 'DELETE_NYT_BOOK_FROM_STATE',
+				payload : book_uri
+			});
 		} catch (err) {
 			dispatch({
 				type    : 'TRANSACTION_ERROR',
-				payload : err 
+				payload : err
 			});
 		}
 		// this.setState({
@@ -125,7 +134,8 @@ export const BookProvider = ({ children }) => {
 				postBookToMongo,
 				deleteBookFromMongo,
 				deleteBook,
-				getNYTBooks
+				getNYTBooks,
+				getMongoBooks
 			}}
 		>
 			{children}

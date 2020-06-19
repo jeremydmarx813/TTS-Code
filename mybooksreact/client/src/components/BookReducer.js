@@ -1,5 +1,10 @@
 export default (state, action) => {
 	switch (action.type) {
+		case 'GET_MONGO_BOOKS':
+			return {
+				...state,
+				savedBooks : action.payload.data
+			};
 		case 'GET_NYT_BOOKS':
 			const testGenreArr = [];
 			return {
@@ -13,11 +18,13 @@ export default (state, action) => {
 				books  : action.payload.data.results.lists
 					.reduce((s, e) => {
 						let funcBooks = e.books.map((b) => {
-							// if (this.state.savedBooks.find((savedBook) => savedBook.book_uri === b.book_uri)) {
-							// 	b.isSaved = true;
-							// }
+							if (state.savedBooks.find((savedBook) => savedBook.title === b.title)) {
+								console.log('reached block');
+								b.isSaved = true;
+							} else {
+								b.isSaved = false;
+							}
 
-							b.isSaved = false;
 							b.list_name = e.list_name;
 							return b;
 						});
@@ -25,12 +32,28 @@ export default (state, action) => {
 						return s;
 					}, [])
 					.flat()
-            };
-        case 'DELETE_NYT_BOOK_FROM_STATE':
-            return {
-                ...state,
-                books: state.books.filter((b) => b.book_uri !== action.payload)
-            }
+			};
+		case 'TOGGLE_BOOK_SAVED':
+			return {
+				...state,
+				books : state.books.map((b) => {
+					if (b.book_uri === action.payload) {
+						b.isSaved = !b.isSaved;
+						return b;
+					} else {
+						return b;
+					}
+				})
+			};
+		// case 'POST_MONGO_BOOK':
+		//     return {
+
+		//     }
+		case 'DELETE_NYT_BOOK_FROM_STATE':
+			return {
+				...state,
+				books : state.books.filter((b) => b.book_uri !== action.payload)
+			};
 		case 'TRANSACTION_ERROR':
 			return {
 				...state,
