@@ -5,8 +5,8 @@ import { Form, FormGroup } from 'reactstrap';
 const AddBook = () => {
 	const { genres, getNYTBooks } = useContext(BookContext);
 	useEffect(() => {
-       getNYTBooks();
-	}, [])
+		getNYTBooks();
+	}, []);
 	return (
 		<Form className="d-flex flex-column align-items-center">
 			<FormGroup className="text-center">
@@ -17,13 +17,13 @@ const AddBook = () => {
 					id="inlineFormCustomSelect"
 				>
 					<option value={''}>Search via genre...</option>
-					{/* {genres.map((g, i) => {
+					{genres.map((g, i) => {
 						return (
 							<React.Fragment key={i}>
 								<option>{g}</option>
 							</React.Fragment>
 						);
-					})} */}
+					})}
 				</select>
 			</FormGroup>
 		</Form>

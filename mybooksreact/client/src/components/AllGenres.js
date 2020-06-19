@@ -3,29 +3,27 @@ import Bookshelf from './Bookshelf';
 import { BookContext } from './BookState';
 
 const AllGenres = () => {
-	const { genres, getNYTBooks } = useContext(BookContext);
-	useEffect(() => {
-		getNYTBooks();
-	}, []);
+	const { genres, selectedGenre } = useContext(BookContext);
+	
 	// const testAllGenres = genres.reduce((s, e) => {
 	// 	if (!this.state.genres.includes(e.list_name)) {
 	// 		s.push(e.list_name);
 	// 	}
 	// 	return s;
 	// }, []);
-	//if (genres.length) {
-	// if (!selectedGenre.length) {
-	//		return testAllGenres.map((g, i) => {
-	//			return <Bookshelf genre={g} key={i} />;
-	//		});
-	// } else {
-	// 	return (
-	// 		<React.Fragment>
-	// 			<Bookshelf genre={selectedGenre} />
-	// 		</React.Fragment>
-	// 	);
-	// }
-	//} else {
+	if (genres.length) {
+	if (!selectedGenre.length) {
+			return genres.map((g, i) => {
+				return <Bookshelf genre={g} key={i} />;
+			});
+	} else {
+		return (
+			<React.Fragment>
+				<Bookshelf genre={selectedGenre} />
+			</React.Fragment>
+		);
+	}
+	} else {
 	return (
 		<React.Fragment>
 			<img
@@ -35,7 +33,7 @@ const AllGenres = () => {
 			/>
 		</React.Fragment>
 	);
-	//}
+	}
 };
 
 export default AllGenres;
