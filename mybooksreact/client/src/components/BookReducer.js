@@ -33,10 +33,12 @@ export default (state, action) => {
 					.flat()
 			};
 		case 'TOGGLE_BOOK_SAVED':
+			console.log(action.payload)
 			return {
 				...state,
 				books : state.books.map((b) => {
-					if (b.book_title === action.payload) {
+					if (b.title === action.payload) {
+						console.log('books toggle block')
 						b.isSaved = !b.isSaved;
 						return b;
 					} else {

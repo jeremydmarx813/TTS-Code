@@ -61,7 +61,7 @@ export const BookProvider = ({ children }) => {
 	};
 
 	const postBookToMongo = async (bData) => {
-		toggleBookIsSaved(bData.book_title);
+		toggleBookIsSaved(bData.title);
 		axios
 			.post('http://localhost:4000/api/savedbooks', {
 				amazon_product_url : bData.amazon_product_url,
@@ -73,7 +73,7 @@ export const BookProvider = ({ children }) => {
 				list_name          : bData.list_name,
 				publisher          : bData.publisher,
 				primary_isbn10     : bData.primary_isbn10,
-				isSaved            : bData.isSaved
+				isSaved            : !bData.isSaved
 			})
 			.then((res) => console.log(res))
 			.catch((err) => console.log(err));
