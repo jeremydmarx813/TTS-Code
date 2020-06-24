@@ -18,8 +18,10 @@ export default (state, action) => {
 				books  : action.payload.data.results.lists
 					.reduce((s, e) => {
 						let funcBooks = e.books.map((b) => {
+							let tempId;
 							if (state.savedBooks.find((savedBook) => savedBook.title === b.title)) {
 								b.isSaved = true;
+								b._id = state.savedBooks.find((savedBook) => savedBook.title === b.title)._id;
 							} else {
 								b.isSaved = false;
 							}
@@ -33,12 +35,11 @@ export default (state, action) => {
 					.flat()
 			};
 		case 'TOGGLE_BOOK_SAVED':
-			console.log(action.payload)
 			return {
 				...state,
 				books : state.books.map((b) => {
 					if (b.title === action.payload) {
-						console.log('books toggle block')
+						// console.log('books toggle block');
 						b.isSaved = !b.isSaved;
 						return b;
 					} else {
@@ -46,10 +47,19 @@ export default (state, action) => {
 					}
 				})
 			};
-		// case 'POST_MONGO_BOOK':
-		//     return {
-
-		//     }
+		case 'POST_MONGO_BOOK':
+			return {
+				...state,
+				books : state.books.map((b) => {
+					if (b.title === action.payload.title && !b._id) {
+						console.log('post mongo block');
+						b._id = action.payload._id;
+						return b;
+					} else {
+						return b;
+					}
+				})
+			};
 		case 'DELETE_NYT_BOOK_FROM_STATE':
 			return {
 				...state,

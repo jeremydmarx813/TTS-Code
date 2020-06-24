@@ -75,16 +75,22 @@ export const BookProvider = ({ children }) => {
 				primary_isbn10     : bData.primary_isbn10,
 				isSaved            : !bData.isSaved
 			})
-			.then((res) => console.log(res))
+			.then((res) => {
+				console.log(res.data)
+				dispatch({
+					type    : 'POST_MONGO_BOOK',
+					payload : res.data
+				});
+			})
 			.catch((err) => console.log(err));
 	};
 
-	const deleteBookFromMongo = async (bId, uri) => {
-		// this.toggleBookIsSaved(uri);
-		// axios
-		// 	.delete(`http://localhost:4000/api/savedbooks/${bId}`)
-		// 	.then((res) => console.log(res))
-		// 	.catch((err) => console.log(err));
+	const deleteBookFromMongo = async (bId, title) => {
+		toggleBookIsSaved(title);
+		axios
+			.delete(`http://localhost:4000/api/savedbooks/${bId}`)
+			.then((res) => console.log(res))
+			.catch((err) => console.log(err));
 	};
 
 	const deleteBook = (book_uri) => {

@@ -18,7 +18,7 @@ const Book = (props) => {
 				{isSaved ? (
 					<button
 						className="btn btn-success btn-sm mx-2"
-						onClick={deleteBookFromMongo.bind(this, _id, book_uri)}
+						onClick={deleteBookFromMongo.bind(this, _id, title)}
 					>
 						Saved
 					</button>
