@@ -19,6 +19,10 @@ export const BookProvider = ({ children }) => {
 		// this.setState({
 		// 	selectedGenre : e.target.value
 		// });
+		dispatch({
+			type: 'SWITCH_SELECTED_GENRE',
+			payload: e.target.value
+		})
 	};
 
 	const getNYTBooks = async () => {

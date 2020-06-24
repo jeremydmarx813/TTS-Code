@@ -5,7 +5,7 @@ import { BookContext } from '../BookState';
 
 const SavedBooks = () => {
 	const { savedBooks, getMongoBooks } = useContext(BookContext);
-	const [savedArr, setSavedArr] = useState(savedBooks);
+	const [ savedArr, setSavedArr ] = useState(savedBooks);
 	// const testGetBooks = axios
 	// 	.get('http://localhost:4000/api/savedbooks')
 	// 	.then((res) => res.data)
@@ -23,9 +23,9 @@ const SavedBooks = () => {
 	// }, []);
 	useEffect(
 		() => {
-			setSavedArr([...savedArr, getMongoBooks()]);
+			getMongoBooks();
 		},
-		[savedArr]
+		[ savedArr.length ]
 	);
 	return (
 		<div className="container flex-column text-center">
@@ -43,8 +43,7 @@ const SavedBooks = () => {
 							alt="spinner"
 						/>
 					</React.Fragment>
-				)
-				}
+				)}
 			</React.Fragment>
 		</div>
 	);

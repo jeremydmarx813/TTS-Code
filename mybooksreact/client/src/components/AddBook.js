@@ -3,7 +3,7 @@ import { BookContext } from './BookState';
 import { Form, FormGroup } from 'reactstrap';
 // , selectedGenre, selectGenreFunc
 const AddBook = () => {
-	const { genres, getNYTBooks, getMongoBooks } = useContext(BookContext);
+	const { genres, selectGenreFunc, selectedGenre, getNYTBooks, getMongoBooks } = useContext(BookContext);
 	useEffect(() => {
 		getMongoBooks();
 		getNYTBooks();
@@ -12,8 +12,8 @@ const AddBook = () => {
 		<Form className="d-flex flex-column align-items-center">
 			<FormGroup className="text-center">
 				<select
-					// value={selectedGenre}
-					// onChange={selectGenreFunc}
+					value={selectedGenre}
+					onChange={selectGenreFunc}
 					className="custom-select mr-sm-2"
 					id="inlineFormCustomSelect"
 				>

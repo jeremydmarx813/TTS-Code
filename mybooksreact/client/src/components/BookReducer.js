@@ -34,6 +34,12 @@ export default (state, action) => {
 					}, [])
 					.flat()
 			};
+		case 'SWITCH_SELECTED_GENRE':
+			// console.log('switch genre select');
+			return {
+			   ...state,
+			   selectedGenre: action.payload
+			}
 		case 'TOGGLE_BOOK_SAVED':
 			return {
 				...state,
