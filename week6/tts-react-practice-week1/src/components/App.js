@@ -1,17 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Greeting from './Greeting';
+import Name  from './Name';
 
 const App = () => {
-  const [testPhrase, setTestPhrase] = useState('')
-  useEffect(() => {
-    console.log('mounted')
-  })
+
   return (
     <div>
       <Greeting greet={'Hello World'}/>
-      <h1>{testPhrase}</h1>
-      <input onChange={(e) => setTestPhrase(e.target.value)}/>
-      
+      <Name text="Jeremy Marx" />
+      <Name text="Emily King" />
+      <Name text="Ari Lennox" />
     </div>
   );
 }
