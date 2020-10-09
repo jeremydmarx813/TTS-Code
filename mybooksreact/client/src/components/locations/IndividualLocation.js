@@ -27,7 +27,8 @@ const IndividualLocation = (props) => {
 	// 	};
 	// }, []);
 
-	const { book_image, title, author, publisher, description, reviewLink } = indvRevs;
+	const { book_image, title, author, publisher, description, reviewLink, 
+		amazon_product_url } = indvRevs;
 	return (
 		<React.Fragment>
 			<div>
@@ -45,7 +46,7 @@ const IndividualLocation = (props) => {
 					</h4>
 					<p className="card-text">{description}</p>
 					<div className="d-flex flex-row justify-content-around">
-						<a href="https://www.amazon.com/dp/0385545932?tag=NYTBSREV-20?tag=NYTBS-20" target="_blank">
+						<a href={amazon_product_url} target="_blank">
 							<button className="btn bg-warning align-self-center">Buy on Amazon</button>
 						</a>
 						{reviewLink ? (
